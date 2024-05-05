@@ -7,7 +7,8 @@ import Marketing from './sitebar/marketing';
 import Roadmap from './sitebar/roadmap';
 import Newbord from './sitebar/newbord';
 import Mainhome from './homesection/mainhome';
-
+import ColumnSection from './component/columnSection';
+// import Sitebar from './sitebar/sitebar';
 
 import {
   createBrowserRouter,
@@ -19,9 +20,19 @@ const router = createBrowserRouter([
     path: "/",
     element: <Root></Root>,
     children: [
+      {
+        path: "/columnSection",
+        element: <ColumnSection></ColumnSection>
+      },
+      {
+        path: "/",
+        element: <Mainhome></Mainhome>
+
+      },
       // {
-      //   path: "/",
-      //   element: <Home></Home>
+      //   path: "/sitebar",
+      //   element: <Sitebar></Sitebar>
+
       // },
       {
         path: "/roadmap",

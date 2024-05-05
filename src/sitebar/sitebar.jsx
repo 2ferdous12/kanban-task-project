@@ -6,6 +6,10 @@ import { BiHide } from "react-icons/bi";
 const sitebar = () => {
 const [theme, setTheme] = useState('light')
 
+const [isSidebarVisible, setIsSidebarVisible] = useState(true);
+const toggleSidebar = () => {
+  setIsSidebarVisible(!isSidebarVisible);
+};
 
 
 const handleToggle = (e) =>{
@@ -19,12 +23,15 @@ else{
 
 
     return (
+
+      <div className="">
+      {isSidebarVisible ? (
         <div id="container"  className=" hidden  md:block lg:block min-h-[calc(100vh-90px)]
        w-[200px] md:w-[260px]  lg:w-[300px]  shadow-md  bg-[#FFFFFF] " >
             <div className="flex flex-col  justify-between">
- <div className="pl-1 md:pl-2 lg:pl-3 min-h-[calc(100vh-200px)]  ">
- 
+ <div className="pl-1 md:pl-2 lg:pl-3 min-h-[calc(100vh-200px)] md:w-[260px] lg:w-[300px]  ">
  <h1 className="text-xl pb-3 font-semibold text-gray-500">ALL BOARDS (3)</h1>     
+    
      <NavLink to="/" 
      className={({isActive}) => isActive ? 'flex pb-1 text-white items-center text-xl   md:pl-3 font-semibold pl-1 lg:pl-4 w-[200px]  md:w-[240px] bg-[#635FC7]  hover:text-[#635FC7] hover:bg-[#F4F7FD]  lg:w-[270px] rounded-r-full  h-[45px]  '
       : ' flex items-center text-xl f md:pl-3 pb-1 font-semibold pl-1 lg:pl-4 w-[200px]   md:w-[240px] lg:w-[270px] rounded-r-full  h-[50px] text-[#635FC7] hover:text-[#635FC7] hover:bg-[#F4F7FD] '}
@@ -47,26 +54,22 @@ else{
      <NavLink  to="/roadmap" 
      className={({isActive}) => isActive ? 'flex pb-1 text-white items-center text-xl f md:pl-3 font-semibold pl-1 lg:pl-4 w-[200px]  md:w-[240px] bg-[#635FC7]  hover:text-[#635FC7] hover:bg-[#F4F7FD]  lg:w-[270px] rounded-r-full  h-[45px]  '
      : ' flex items-center text-xl f md:pl-3 pb-1 font-semibold pl-1 lg:pl-4 w-[200px]   md:w-[240px] lg:w-[270px] rounded-r-full  h-[50px] text-[#635FC7] hover:text-[#635FC7] hover:bg-[#F4F7FD] '}
-       >
+      >
      <img className="pr-3" 
      src="/images/fluent_board-split-24-regular (1).png" alt="" />
-       Roadmap</NavLink>
+     Roadmap</NavLink>
     
-     <NavLink  className=' flex items-center text-xl f md:pl-3 pb-1
+ <NavLink  className=' flex items-center text-xl f md:pl-3 pb-1
 font-semibold pl-1 lg:pl-4 w-[200px]  md:w-[240px] lg:w-[270px] 
 rounded-r-full h-[50px] text-[#635FC7] hover:text-[#635FC7]
  hover:bg-[#F4F7FD] '>
      <img  className="pr-3 text-[#635FC7] "
       src="/images/fluent_board-split-24-regular (1).png" alt="" />
       + Create New Board</NavLink>
-
-
-      <p>
-     
-      </p>
-
  </div>
   <div>
+
+
   <div className="flex justify-center ">
 <div className="bg-[#F4F7FD] rounded-lg mt-1
 w-[250px] h-[50px] flex justify-center items-center">
@@ -88,8 +91,8 @@ className="toggle theme-controller"/>
 
 <div className="   mt-2 flex justify-center ">
 <div   className=" flex items-center h-[48px] hover:bg-[#F4F7FD] w-[250px] rounded-lg justify-center gap-3">
-<Link >
-<BiHide className="w-"></BiHide>
+<Link onClick={toggleSidebar} >
+<BiHide className="w-6"></BiHide>
 </Link>
  <p className="text-xl font-semibold">Hide Sidebar</p>
 </div>
@@ -97,6 +100,16 @@ className="toggle theme-controller"/>
                 </div>
             </div>
         </div>
+      ) : (
+<div onClick={toggleSidebar} className=" rounded-r-full absolute top-[98%]
+bg-[#635FC7] flex justify-center items-center text-white
+ -mt-[50px] w-[50px] h-[40px]">
+<BiHide 
+ className="w-6"></BiHide>
+</div>
+      )}
+    </div>
+  
     );
 };
 
