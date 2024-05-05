@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 import Root from './root';
-import Home from './homesection/home';
+// import Home from './homesection/home';
 import Marketing from './sitebar/marketing';
 import Roadmap from './sitebar/roadmap';
 import Newbord from './sitebar/newbord';
@@ -19,22 +19,21 @@ const router = createBrowserRouter([
     path: "/",
     element: <Root></Root>,
     children: [
-      {
-        path: "/",
-        element: <Home></Home>
-      },
-      {
-        path: "/mainhome",
-        element: <Mainhome></Mainhome>
-      },
-      {
-        path: "/marketing",
-        element: <Marketing></Marketing>
-      },
+      // {
+      //   path: "/",
+      //   element: <Home></Home>
+      // },
       {
         path: "/roadmap",
         element: <Roadmap></Roadmap>
       },
+      // },
+
+      {
+        path: "/marketing",
+        element: <Marketing></Marketing>
+      },
+    
       {
         path: "/newbord",
         element: <Newbord></Newbord>

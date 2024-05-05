@@ -60,10 +60,10 @@ const navbar = () => {
               src="/images/fluent_board-split-24-regular (1).png" alt="" />
                 Roadmap</NavLink>
              
-              <NavLink  to="/newbord" 
-              className={({isActive}) => isActive ? 'flex pb-1 pr-2 text-white items-center text-xl f md:pl-3 font-semibold pl-1 w-[225px] bg-[#635FC7]  hover:text-[#635FC7] hover:bg-[#F4F7FD]  lg:w-[270px] rounded-r-full  h-[45px]  '
-              : ' flex items-center text-xl f md:pl-3 pb-1 font-semibold pl-1 lg:pl-4 w-[225px]   rounded-r-full h-[50px] text-[#635FC7] hover:text-[#635FC7] hover:bg-[#F4F7FD] '}
-                >
+              <NavLink  className=' flex items-center text-xl f md:pl-3 pb-1
+         font-semibold pl-1 lg:pl-4 w-[200px]  md:w-[240px] lg:w-[270px] 
+         rounded-r-full h-[50px] text-[#635FC7] hover:text-[#635FC7]
+          hover:bg-[#F4F7FD] '>
               <img  className="pr-3 text-[#635FC7] "
                src="/images/fluent_board-split-24-regular (1).png" alt="" />
                + Create New Board</NavLink>
