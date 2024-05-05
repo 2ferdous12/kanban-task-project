@@ -2,14 +2,14 @@
 
 const createBoard = () => {
     return (
-        <div className="modal-box  bg-[#FFFFFF] h-[430px] p-5 pl-9 md:pl-12 lg:pl-12 ">
- <div className="w-[335px] md:w-[450px] lg:w-[450px]">
+        <div className="modal-box  bg-[#FFFFFF] h-[430px] p-5 pl-11 md:pl-12 lg:pl-12 ">
+ <div className="w-[315px] md:w-[430px] lg:w-[430px]">
                
  <h3 className="font-bold text-black text-2xl  ">Add New Board</h3>
     <form  className="mt-5">
     
     <label className="text-xl  font-semibold text-gray-500 ">Name</label> <br />
-    <input className="w-[295px]  md:w-[416px] lg:w-[416px] mt-2 mb-3 border-2 border-[#E4EBFA] rounded-sm text-xs p-3 h-[40px] text-gray-400 " 
+    <input className="w-[295px]  md:w-[416px] lg:w-[416px] mt-2 mb-3 border-2 border-[#E4EBFA] rounded-sm text-xl p-3 h-[40px] text-gray-400 " 
     type="text"
      placeholder="e.g. Web Design"/>
     
