@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-
+import CreateBoard from "../component/createBoard";
 import { BiHide } from "react-icons/bi";
 
 const sitebar = () => {
@@ -59,18 +59,27 @@ else{
      src="/images/fluent_board-split-24-regular (1).png" alt="" />
      Roadmap</NavLink>
     
- <NavLink  className=' flex items-center text-xl f md:pl-3 pb-1
+ <div  onClick={()=>document.getElementById('my_modal_5').showModal()}
+  className=' cursor-pointer flex items-center text-xl f md:pl-3 pb-1
 font-semibold pl-1 lg:pl-4 w-[200px]  md:w-[240px] lg:w-[270px] 
 rounded-r-full h-[50px] text-[#635FC7] hover:text-[#635FC7]
  hover:bg-[#F4F7FD] '>
      <img  className="pr-3 text-[#635FC7] "
       src="/images/fluent_board-split-24-regular (1).png" alt="" />
-      + Create New Board</NavLink>
- </div>
-  <div>
+      + Create New Board
+
+      {/* board create modal */}
+      
+<dialog id="my_modal_5" className="modal   modal-bottom sm:modal-middle">
+<CreateBoard></CreateBoard>
+</dialog>
+      
+</div>
+</div>
+<div>
 
 
-  <div className="flex justify-center ">
+<div className="flex justify-center ">
 <div className="bg-[#F4F7FD] rounded-lg mt-1
 w-[250px] h-[50px] flex justify-center items-center">
 <label className="flex cursor-pointer gap-4 text-center">
@@ -104,8 +113,7 @@ className="toggle theme-controller"/>
 <div onClick={toggleSidebar} className=" rounded-r-full absolute top-[98%]
 bg-[#635FC7] flex justify-center items-center text-white
  -mt-[50px] w-[50px] h-[40px]">
-<BiHide 
- className="w-6"></BiHide>
+<BiHide className="w-6"></BiHide>
 </div>
       )}
     </div>

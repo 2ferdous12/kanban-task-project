@@ -8,7 +8,7 @@ import Roadmap from './sitebar/roadmap';
 import Newbord from './sitebar/newbord';
 import Mainhome from './homesection/mainhome';
 import ColumnSection from './component/columnSection';
-// import Sitebar from './sitebar/sitebar';
+import Sitebar from './sitebar/sitebar';
 
 import {
   createBrowserRouter,
@@ -29,11 +29,11 @@ const router = createBrowserRouter([
         element: <Mainhome></Mainhome>
 
       },
-      // {
-      //   path: "/sitebar",
-      //   element: <Sitebar></Sitebar>
+      {
+        path: "/sitebar",
+        element: <Sitebar></Sitebar>
 
-      // },
+      },
       {
         path: "/roadmap",
         element: <Roadmap></Roadmap>

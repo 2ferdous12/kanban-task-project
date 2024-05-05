@@ -1,14 +1,13 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-
+import CreateBoard from "./component/createBoard";
 
 const navbar = () => {
-
   const [theme, setTheme] = useState('light')
   const [divOpen, setDivOpen] = useState(false);
 
   const toggleDiv = () => {
-    setDivOpen(!divOpen);
+  setDivOpen(!divOpen);
   };
 
   const handleToggle = (e) =>{
@@ -60,15 +59,22 @@ const navbar = () => {
               src="/images/fluent_board-split-24-regular (1).png" alt="" />
                 Roadmap</NavLink>
              
-              <NavLink  className=' flex items-center text-xl f md:pl-3 pb-1
-         font-semibold pl-1 lg:pl-4 w-[200px]  md:w-[240px] lg:w-[270px] 
+              <div onClick={()=>document.getElementById('my_modal_5').showModal()}
+                className=' flex items-center text-xl f md:pl-3 pb-1
+         font-semibold pl-1 pr-1 lg:pl-4 w-[220px]  md:w-[240px] lg:w-[270px] 
          rounded-r-full h-[50px] text-[#635FC7] hover:text-[#635FC7]
           hover:bg-[#F4F7FD] '>
               <img  className="pr-3 text-[#635FC7] "
                src="/images/fluent_board-split-24-regular (1).png" alt="" />
-               + Create New Board</NavLink>
+               + Create New Board
+               
+ <dialog id="my_modal_5" className="modal   modal-bottom sm:modal-middle">
+<CreateBoard></CreateBoard>
+</dialog>     
+               
+</div>
 
-               <div className="flex justify-center ">
+ <div className="flex justify-center ">
 <div className="bg-[#F4F7FD] rounded-lg mt-1
  w-[250px] h-[50px] flex justify-center items-center">
 <label className="flex cursor-pointer gap-4 text-center">
