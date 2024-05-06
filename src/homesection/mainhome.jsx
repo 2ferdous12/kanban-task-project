@@ -1,12 +1,15 @@
 import { useState } from "react";
+import { useLoaderData } from "react-router-dom";
 
 
 const mainhome = () => {
   const [showEmptyBoard, setShowEmptyBoard] = useState(true);
-
   const toggleSections = () => {
     setShowEmptyBoard(!showEmptyBoard);
   };
+
+  const users = useLoaderData();
+
 return (
 <div className="min-h-[calc(100vh-90px)] w-full bg-[#F4F7FD] ">
 <div className="min-h-[calc(100vh-90px)] w-full bg-[#F4F7FD]">
@@ -30,7 +33,7 @@ return (
         <div className="bg-[#F4F7FD] w-full flex justify-center items-center min-h-[calc(100vh-120px)]">
           {/* Content for the "Add Column" section goes here */}
           <div>
-          <h1>hi</h1>
+          <h1 className="text-4xl">hi:{users.length}</h1>
           </div>
         </div>
       )}
