@@ -70,7 +70,7 @@ rounded-r-full h-[50px] text-[#635FC7] hover:text-[#635FC7]
 
       {/* board create modal */}
       
-<dialog id="my_modal_5" className="modal   modal-bottom sm:modal-middle">
+<dialog id="my_modal_5" className="modal  flex justify-center items-center  modal-bottom sm:modal-middle">
 <CreateBoard></CreateBoard>
 </dialog>
       
