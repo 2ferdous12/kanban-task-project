@@ -9,7 +9,7 @@ import Newbord from './sitebar/newbord';
 import Mainhome from './homesection/mainhome';
 import ColumnSection from './component/columnSection';
 import Sitebar from './sitebar/sitebar';
-
+import Board from './homesection/board';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -27,13 +27,16 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Mainhome></Mainhome>,
-      loader: () => fetch('http://localhost:5000/users')
       },
       
       {
         path: "/sitebar",
-        element: <Sitebar></Sitebar>
-
+        element: <Sitebar></Sitebar>,
+      },
+      {
+        path: "/board",
+        element: <Board></Board>,
+        loader: () => fetch('http://localhost:5000/users')
       },
       {
         path: "/roadmap",
