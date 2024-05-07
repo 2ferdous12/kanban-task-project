@@ -1,13 +1,19 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import CreateBoard from "./component/createBoard";
+import CreateNewTask from "./component/createNewTask";
+import DeleteBord from "./component/deleteBord";
 
 const navbar = () => {
   const [theme, setTheme] = useState('light')
   const [divOpen, setDivOpen] = useState(false);
+  const [edit, setEdit] = useState(false)
 
   const toggleDiv = () => {
   setDivOpen(!divOpen);
+  };
+  const editDiv = () => {
+    setEdit(!edit);
   };
 
   const handleToggle = (e) =>{
@@ -113,16 +119,29 @@ const navbar = () => {
   <div className="navbar-end space-x-3 pr-5">
    <div className='w-[50px] md:w-[180px] lg:w-[180px] bg-[#A8A4FF]
     p-3 h-[32px] md:h-[48px] lg:h-[48px] mt-1 rounded-full flex justify-center items-center'> 
-   <a className=" hidden md:block lg:block cur font-semibold text-xl
-    text-white ">+ Add New Task</a>
-
-   <a className=" block md:hidden lg:hidden 
-    font-semibold text-3xl md:text-4xl lg:text-4xl
-     cursor-pointer  text-white ">+</a>
-
+    {
+      <CreateNewTask></CreateNewTask>
+    }
    </div>
 
-   <img className="ml-3 mr-3 w-[4px] h-[20px] mt-1 " src="/images/Group 6.png" alt="" />
+ <div>
+
+ <img onClick={editDiv} className="ml-3 cursor-pointer mr-3 w-[4px] h-[20px] mt-1 " src="/images/Group 6.png" alt="" />
+ {edit && (
+   <div className=" top-[9%] right-[22%]
+   w-[180px] h-[90px] p-7 space-y-2 bg-[#FFFFFF] shadow-md rounded-lg absolute">
+ 
+  <p className="font-semibold text-gray-500">Edit Board</p>
+{
+    <DeleteBord></DeleteBord>
+}
+
+   </div>
+ )}
+
+ </div>
+
+
   </div>
 </div>
     );

@@ -16,6 +16,7 @@ return (
   h-[50px] bg-[#635FC7] font-semibold text-xl
    hover:bg-[#A8A4FF] rounded-full`}>+ Add New Column
 </Link>
+<p>{}</p>
 
  </div>
 </div>

@@ -10,6 +10,8 @@ import Mainhome from './homesection/mainhome';
 import ColumnSection from './component/columnSection';
 import Sitebar from './sitebar/sitebar';
 import Board from './homesection/board';
+import DeleteBord from './component/deleteBord';
+import Mainbord from './homesection/mainbord';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -22,7 +24,8 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/columnSection",
-        element: <ColumnSection></ColumnSection>
+        element: <ColumnSection></ColumnSection>,
+        loader: () => fetch('http://localhost:9000/use')
       },
       {
         path: "/",
@@ -34,9 +37,20 @@ const router = createBrowserRouter([
         element: <Sitebar></Sitebar>,
       },
       {
+        path: "/mainbord",
+        element: <Mainbord></Mainbord>,
+     
+      },
+      {
         path: "/board",
         element: <Board></Board>,
-        loader: () => fetch('http://localhost:5000/users')
+        loader: () => fetch('http://localhost:9000/users')
+        
+      },
+      {
+        path: "/deleteBord",
+        element: <DeleteBord></DeleteBord>,
+        loader: () => fetch('http://localhost:9000/users')
       },
       {
         path: "/roadmap",

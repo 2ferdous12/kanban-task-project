@@ -1,26 +1,14 @@
-import { useLoaderData } from "react-router-dom";
-import Mainbord from "./mainbord";
-const board = () => {
-  const columnHandle = (e) =>{
-    e.preventDefault();
-    }
-  const users = useLoaderData();
 
 
-  return (
+const createNewColumn = () => {
 
-    <div className="bg-[#F4F7FD] w-full">
-      <div id="board" className=" flex
-        p-2 w-[375px] md:w-[768px]
-          lg:w-[1100px]  min-h-[calc(100vh-120px)]">
+const columnHandle = (e) =>{
+e.preventDefault();
+}
 
-        {
-          users.map((card, _id) => <Mainbord key={_id}  card={card}></Mainbord>)
-        }
-
-<div className="w-[240px] 
-     h-[814px] mt-16 hidden md:hidden  cursor-pointer lg:block mx-auto  bg-[#eef1f1]">
-     <div className="flex justify-center   h-[814px]   items-center">
+    return (
+    <div>
+     <div className="flex justify-center   h-[814px] items-center">
     <h1 onClick={()=>document.getElementById('my_modal_55').showModal()}
     className="text-xl font-semibold">+ New Column</h1>
 
@@ -84,9 +72,7 @@ const board = () => {
 </dialog>
     </div>
     </div>
-      </div>
-    </div>
-  );
+    );
 };
 
-export default board;
+export default createNewColumn;
