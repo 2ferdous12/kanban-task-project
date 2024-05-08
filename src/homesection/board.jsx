@@ -11,7 +11,7 @@ const board = () => {
 
     <div className="bg-[#F4F7FD] w-full">
       <div id="board" className=" flex
-        p-2 w-[375px] md:w-[768px]
+        p-4 w-[375px] md:w-[768px]
           lg:w-[1100px]  min-h-[calc(100vh-120px)]">
 
         {

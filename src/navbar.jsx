@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import CreateBoard from "./component/createBoard";
 import CreateNewTask from "./component/createNewTask";
@@ -8,7 +8,16 @@ const navbar = () => {
   const [theme, setTheme] = useState('light')
   const [divOpen, setDivOpen] = useState(false);
   const [edit, setEdit] = useState(false)
+  const [taskdat1, serTaskdata1] = useState([]);
 
+  useEffect(() =>{
+      fetch('http://localhost:9000/users')
+      .then(res => res.json())
+      .then(data => serTaskdata1(data))
+  })
+
+
+console.log(taskdat1)
   const toggleDiv = () => {
   setDivOpen(!divOpen);
   };
@@ -25,6 +34,7 @@ const navbar = () => {
   setTheme('light')
   }
   }
+
 
     return (
 <div className="navbar bg-[#FFFFFF] h-[90px] shadow-md">
@@ -129,12 +139,13 @@ const navbar = () => {
  <img onClick={editDiv} className="ml-3 cursor-pointer mr-3 w-[4px] h-[20px] mt-1 " src="/images/Group 6.png" alt="" />
  {edit && (
    <div className=" top-[9%] right-[22%]
-   w-[180px] h-[90px] p-7 space-y-2 bg-[#FFFFFF] shadow-md rounded-lg absolute">
+   w-[180px] h-[90px] p-5 space-y-2 bg-[#FFFFFF] shadow-md rounded-lg absolute">
  
-  <p className="font-semibold text-gray-500">Edit Board</p>
-{
-    <DeleteBord></DeleteBord>
-}
+  <p className="font-semibold cursor-pointer text-gray-500">Edit Board</p>
+  {
+    taskdat1.map((data, _id) => <DeleteBord data={data} key={_id}></DeleteBord>)
+  }
+
 
    </div>
  )}

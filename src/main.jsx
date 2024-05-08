@@ -8,7 +8,7 @@ import Roadmap from './sitebar/roadmap';
 import Newbord from './sitebar/newbord';
 import Mainhome from './homesection/mainhome';
 import ColumnSection from './component/columnSection';
-import Sitebar from './sitebar/sitebar';
+import Navbar from './navbar';
 import Board from './homesection/board';
 import DeleteBord from './component/deleteBord';
 import Mainbord from './homesection/mainbord';
@@ -32,10 +32,11 @@ const router = createBrowserRouter([
         element: <Mainhome></Mainhome>,
       },
       
-      {
-        path: "/sitebar",
-        element: <Sitebar></Sitebar>,
-      },
+      // {
+      //   path: "/navbar",
+      //   element: <Navbar></Navbar>,
+      //   loader: () => fetch('http://localhost:9000/use')
+      // },
       {
         path: "/mainbord",
         element: <Mainbord></Mainbord>,
