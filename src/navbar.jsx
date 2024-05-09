@@ -17,7 +17,7 @@ const navbar = () => {
   })
 
 
-console.log(taskdat1)
+
   const toggleDiv = () => {
   setDivOpen(!divOpen);
   };

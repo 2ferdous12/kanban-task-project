@@ -1,6 +1,9 @@
-import { useEffect, useState } from "react";
+import { Link, useLoaderData } from "react-router-dom";
 import Mainbord from "../homesection/mainbord";
-const createNewTask = () => {
+import { useEffect, useState } from "react";
+const updateTask = () => {
+  const load = useLoaderData()
+
   const [inputValue, setInputValue] = useState('');
   const [inputValue2, setInputValue2] = useState('');
   const [borderColor, setBorderColor] = useState('');
@@ -10,13 +13,12 @@ const createNewTask = () => {
   const [taskdata333, setTaskdata333] = useState([]);
   const [taskStatus, setTaskStatus] = useState('todo');
 
-
-
   useEffect(() =>{
-      fetch('http://localhost:9000/users')
-      .then(res => res.json())
-      .then(data => setTaskdata333(data))
-  })
+    fetch('http://localhost:9000/users')
+    .then(res => res.json())
+    .then(data => setTaskdata333(data))
+})
+
   const handleStatusChange = (newStatus) => {
     setTaskStatus(newStatus);
   };
@@ -44,51 +46,44 @@ const createNewTask = () => {
     setImgSrc2('/public/images/Group 18 (1).png');
   }
 
+  const taskUpdateHandle = (e) =>{
+    e.preventDefault();
+    const form =e.target;
 
-    const taskHandle = (e) =>{
-        e.preventDefault();
-        const form =e.target;
+    const title = form.title.value;
+    const textarea = form.textarea.value;
+    const substak1 = form.substak1.value;
+    const substak2 = form.substak2.value;
+    const status = form.status.value;
+   const update = {title, textarea, substak1, substak2, status}
 
-        const title = form.title.value;
-        const textarea = form.textarea.value;
-        const substak1 = form.substak1.value;
-        const substak2 = form.substak2.value;
-        const status = form.status.value;
-       const use = {title, textarea, substak1, substak2, status}
-        console.log(use);
-       
-       
-        fetch('http://localhost:9000/use', {
-         method: 'POST',
-         headers: {
-           "content-Type": "application/json",
-         },
-         body: JSON.stringify(use)
-        })
-        .then(res => res.json())
-        .then(data => {
-         console.log(data)
-         if(data.insertedId){
-           alert('Board name added successfully')
-           form.reset();
-         }
-        })
+   fetch(`http://localhost:9000/use/${load._id}`, {
+    method: "PUT",
+    headers: {
+      "content-Type": "application/json",
+    },
+    body: JSON.stringify(update)
+   })
+   .then(res =>res.json())
+   .then(data =>{
+    console.log(data);
+    if(data.modifiedCount> 0){
+alert('updated succesfully')
     }
+   })
+   
+
+  }
 
     return (
-        <div>
-  <a onClick={()=>document.getElementById('my_modal_555').showModal()}
-  className=" hidden md:block lg:block cur font-semibold cursor-pointer text-xl
-    text-white ">+ Add New Task</a>
-
-<a onClick={()=>document.getElementById('my_modal_555').showModal()}
-className=" block md:hidden lg:hidden 
-    font-semibold text-3xl md:text-4xl lg:text-4xl
-     cursor-pointer  text-white ">+</a>
-        
-<dialog id="my_modal_555" className="modal modal-bottom sm:modal-middle">
-<div className="mx-auto">
-<div className="modal-box w-[350px] md:w-[450px]  lg:w-[450px]  bg-[#FFFFFF]
+        <div className="bg-[#F4F7FD] w-full min-h-[calc(100vh-120px)] p-5">
+<Link to="/board">
+   <button className="btn">
+  <p className="text-xl font-semibold">Go Main Page</p>
+  </button>
+</Link>
+        <div className="absolute left-[41%] top-[20%]">
+        <div className=" w-[350px] md:w-[450px]  lg:w-[450px]  bg-[#FFFFFF]
  h-[675px] p-5  ">
  <div className="">   
 
@@ -105,12 +100,13 @@ className=" block md:hidden lg:hidden
 </div>
 
     <form 
-    onSubmit={taskHandle}
+  onSubmit={taskUpdateHandle}
      className="mt-5">
     <label className="text-xl  font-semibold text-gray-500 ">Title</label> <br />
     <input className="w-[295px]  md:w-[416px] lg:w-[416px] mt-2 mb-3 border-2 border-[#E4EBFA] rounded-sm text-xl p-3 h-[40px] text-gray-400 " 
     type="text"
     name="title"
+    defaultValue={load?.title}
     required
     placeholder=""/> <br />
 
@@ -120,6 +116,7 @@ className=" block md:hidden lg:hidden
      id="" cols="30" rows="10"
      type="text"
      name="textarea"
+     defaultValue={load?.textarea}
      required
      placeholder="e.g. Its always good to take a break. 
      This 15 minute break will 
@@ -135,6 +132,7 @@ className=" block md:hidden lg:hidden
           type="text"
           placeholder="e.g. Make coffee"
           name="substak1"
+          defaultValue={load?.substak1}
           value={inputValue}
           onChange={handleInputChange}
           style={{ borderColor: borderColor }}
@@ -159,6 +157,7 @@ className=" block md:hidden lg:hidden
           type="text"
           placeholder="e.g. Drink coffee & smile"
           name="substak2"
+          defaultValue={load?.substak2}
           value={inputValue2}
           onChange={handleInputChange2}
           style={{ borderColor: borderColor2 }}
@@ -192,6 +191,7 @@ className=" block md:hidden lg:hidden
     {taskdata333.map((task, index) => (
       <select key={index}  className="pr-[300px] text-xl font-semibold  -mt-2 bg-white" 
    name="status"
+   defaultValue={load?.status}
   id=""
  onChange={(e) => handleStatusChange(e.target.value)}>
   <option value="todo">{task.column1}</option>
@@ -204,17 +204,16 @@ className=" block md:hidden lg:hidden
 
 <input className="w-[295px] hover:bg-[#F4F7FD] hover:text-[#635FC7] md:w-[416px] font-bold lg:w-[416px]
   h-[40px] bg-[#635FC7] text-white rounded-full "
-  type="submit" value="Create Task" />
+  type="submit" value="Save Chenge" />
 
  
  </form>
  </div>
 </div>
-<Mainbord taskStatus={taskStatus} taskdata333={taskdata333}></Mainbord>
-</div>
-</dialog>
-    </div>
+        </div>
+        <Mainbord taskStatus={taskStatus} taskdata333={taskdata333}></Mainbord>
+        </div>
     );
 };
 
-export default createNewTask;
+export default updateTask;

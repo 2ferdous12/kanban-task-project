@@ -2,16 +2,18 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 import Root from './root';
-// import Home from './homesection/home';
 import Marketing from './sitebar/marketing';
 import Roadmap from './sitebar/roadmap';
 import Newbord from './sitebar/newbord';
 import Mainhome from './homesection/mainhome';
 import ColumnSection from './component/columnSection';
-import Navbar from './navbar';
 import Board from './homesection/board';
 import DeleteBord from './component/deleteBord';
 import Mainbord from './homesection/mainbord';
+import Modal from './component/modal';
+import UpdateTask from './component/updateTask';
+import ViewTask from './component/viewTask';
+
 import {
   createBrowserRouter,
   RouterProvider,
@@ -30,29 +32,38 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Mainhome></Mainhome>,
+
       },
       
-      // {
-      //   path: "/navbar",
-      //   element: <Navbar></Navbar>,
-      //   loader: () => fetch('http://localhost:9000/use')
-      // },
       {
         path: "/mainbord",
         element: <Mainbord></Mainbord>,
-     
+      
       },
       {
         path: "/board",
         element: <Board></Board>,
         loader: () => fetch('http://localhost:9000/users')
-        
+      },
+      {
+        path: "/viewTask/:id",
+        element: <ViewTask></ViewTask>,
+        loader: ({params}) =>fetch(`http://localhost:9000/use/${params.id}`)
+      },
+      {
+        path: "/updateTask/:id",
+        element: <UpdateTask></UpdateTask>,
+        loader: ({params}) =>fetch(`http://localhost:9000/use/${params.id}`)
       },
       {
         path: "/deleteBord",
         element: <DeleteBord></DeleteBord>,
-        loader: () => fetch('http://localhost:9000/users')
       },
+      {
+        path: "/modal",
+        element: <Modal></Modal>,
+      },
+
       {
         path: "/roadmap",
         element: <Roadmap></Roadmap>

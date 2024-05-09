@@ -15,7 +15,7 @@ const board = () => {
           lg:w-[1100px]  min-h-[calc(100vh-120px)]">
 
         {
-          users.map((card, _id) => <Mainbord key={_id}  card={card}></Mainbord>)
+          users.map((cardbox, _id) => <Mainbord key={_id}  cardbox={cardbox}></Mainbord>)
         }
 
 <div className="w-[240px] 

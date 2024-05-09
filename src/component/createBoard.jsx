@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 const createBoard = () => {
   const [inputValue, setInputValue] = useState('');
   const [inputValue2, setInputValue2] = useState('');
@@ -56,23 +56,48 @@ const handleBoard = (event) =>{
  const column3 = form.column3.value;
 const user = {name, column1, column2, column3}
  console.log(user);
+ fetch(`http://localhost:9000/users?name=${name}`)
+ .then((res) => res.json())
+ .then((data) => {
+   if (data.length > 0) {
+     alert("Board with this name already exists");
+   } else {
+     const user = { name, column1, column2, column3 };
+     console.log(user);
 
+     fetch("http://localhost:9000/users", {
+       method: "POST",
+       headers: {
+         "content-Type": "application/json",
+       },
+       body: JSON.stringify(user),
+     })
+       .then((res) => res.json())
+       .then((data) => {
+         console.log(data);
+         if (data.insertedId) {
+           alert("Board name added successfully");
+           form.reset();
+         }
+       });
+   }
+ });
 
- fetch('http://localhost:9000/users', {
-  method: 'POST',
-  headers: {
-    "content-Type": "application/json",
-  },
-  body: JSON.stringify(user)
- })
- .then(res => res.json())
- .then(data => {
-  console.log(data)
-  if(data.insertedId){
-    alert('Board name added successfully')
-    form.reset();
-  }
- })
+//  fetch('http://localhost:9000/users', {
+//   method: 'POST',
+//   headers: {
+//     "content-Type": "application/json",
+//   },
+//   body: JSON.stringify(user)
+//  })
+//  .then(res => res.json())
+//  .then(data => {
+//   console.log(data)
+//   if(data.insertedId){
+//     alert('Board name added successfully')
+//     form.reset();
+//   }
+//  })
 
 }
 // const [card, setCard] = useState([])
