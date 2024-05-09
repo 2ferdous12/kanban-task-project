@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import CreateBoard from "./component/createBoard";
 import CreateNewTask from "./component/createNewTask";
 import DeleteBord from "./component/deleteBord";
@@ -7,23 +7,70 @@ import DeleteBord from "./component/deleteBord";
 const navbar = () => {
   const [theme, setTheme] = useState('light')
   const [divOpen, setDivOpen] = useState(false);
-  const [edit, setEdit] = useState(false)
-  const [taskdat1, serTaskdata1] = useState([]);
+  const [edit, setEdit] = useState(null)
+  console.log(edit)
+  // const [taskdat1, serTaskdata1] = useState([]);
 
-  useEffect(() =>{
-      fetch('http://localhost:9000/users')
-      .then(res => res.json())
-      .then(data => serTaskdata1(data))
-  })
+  // useEffect(() =>{
+  //     fetch('http://localhost:9000/users')
+  //     .then(res => res.json())
+  //     .then(data => serTaskdata1(data))
+  // })
 
+  const [taskdata333, setTaskdata333] = useState([]);
+
+  const [Taskda, setTaskda] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:9000/use")
+      .then((res) => res.json())
+      .then((data) => setTaskda(data));
+  }, []);
+  
+  useEffect(() => {
+      fetch("http://localhost:9000/users")
+        .then((res) => res.json())
+        .then((data) => setTaskdata333(data));
+    }, []);
+
+
+  const handleDelete = _id => {
+      console.log('clicked')
+      if (taskdata333.length > 0) {
+        alert("Data cannot be deleted until the card is populated.");
+        return;
+      }
+    
+      if (!_id) {
+        alert("No card data available.");
+        return;
+      }
+
+
+      console.log("delete", _id);
+      fetch(`http://localhost:9000/users/${_id}`, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data.deletedCount > 0) {
+            alert("Deleted successfully");
+            const remining = Taskda.filter(user => user._id !== _id)
+            setTaskda(remining)
+          }
+        })
+        .catch((error) => {
+          console.error("Error deleting data:", error);
+          alert("An error occurred while deleting data.");
+        });
+    };
 
 
   const toggleDiv = () => {
   setDivOpen(!divOpen);
   };
-  const editDiv = () => {
-    setEdit(!edit);
-  };
+
 
   const handleToggle = (e) =>{
   if(e.target.checkbox){
@@ -47,7 +94,7 @@ const navbar = () => {
         <div className="absolute top-20 left-[15%]">
       <div className="space-y-1 w-[275px] shadow-lg bg-[#FFFFFF] mt-4 p-3 rounded-lg  list-none">
  
-          <h1 className="text-xl pb-3 font-semibold text-gray-500">ALL BOARDS (3)</h1>     
+          <h1 className="text-xl pb-3 font-semibold text-gray-500">ALL BOARDS ({taskdata333.length})</h1>     
               <NavLink to="/" 
               className={({isActive}) => isActive ? 'flex pb-1 text-white items-center text-xl   md:pl-3 font-semibold pl-1 lg:pl-4 w-[200px]  md:w-[240px] bg-[#635FC7]  hover:text-[#635FC7] hover:bg-[#F4F7FD]  lg:w-[270px] rounded-r-full  h-[45px]  '
                : ' flex items-center text-xl f md:pl-3 pb-1 font-semibold pl-1 lg:pl-4 w-[200px]   md:w-[240px] lg:w-[270px] rounded-r-full  h-[50px] text-[#635FC7] hover:text-[#635FC7] hover:bg-[#F4F7FD] '}
@@ -121,8 +168,15 @@ const navbar = () => {
 </div>
 
 <div className="w-[210px] md:w-[250px] lg:w-[220px] hidden md:block lg:block">
-  <p className='text-2xl pl-0 md:pl-0 lg:pl-8
- font-semibold text-black  '>Platform Launch</p>
+
+{taskdata333
+            .map((task, index) => (
+            <div key={index} >
+      <p className='text-2xl pl-0 md:pl-0 lg:pl-8 font-semibold text-black  '>{task.name}</p>
+              </div>
+            ))}
+
+
 </div>
   </div>
 
@@ -136,16 +190,23 @@ const navbar = () => {
 
  <div>
 
- <img onClick={editDiv} className="ml-3 cursor-pointer mr-3 w-[4px] h-[20px] mt-1 " src="/images/Group 6.png" alt="" />
+ <div id="todo">
+          {taskdata333
+            .map((task, index) => (
+            <div key={index}>
+    <img onClick={() => setEdit(task)} className="ml-3 cursor-pointer mr-3 w-[4px] h-[20px] mt-1 " src="/images/Group 6.png" alt="" />
+              </div>
+            ))}
+        </div>
+
  {edit && (
    <div className=" top-[9%] right-[22%]
    w-[180px] h-[90px] p-5 space-y-2 bg-[#FFFFFF] shadow-md rounded-lg absolute">
  
-  <p className="font-semibold cursor-pointer text-gray-500">Edit Board</p>
-  {
-    taskdat1.map((data, _id) => <DeleteBord data={data} key={_id}></DeleteBord>)
-  }
-
+  <Link to={`/updateBoard/${edit._id}`}
+   className="font-semibold cursor-pointer text-gray-500">Edit Board</Link>
+ <p onClick={() => handleDelete(edit._id)} 
+       className="font-semibold cursor-pointer text-gray-500">Delete board</p>
 
    </div>
  )}

@@ -13,6 +13,9 @@ import Mainbord from './homesection/mainbord';
 import Modal from './component/modal';
 import UpdateTask from './component/updateTask';
 import ViewTask from './component/viewTask';
+import UpdateBoard from './component/updateBoard';
+
+
 
 import {
   createBrowserRouter,
@@ -56,6 +59,11 @@ const router = createBrowserRouter([
         loader: ({params}) =>fetch(`http://localhost:9000/use/${params.id}`)
       },
       {
+        path: "/updateBoard/:id",
+        element: <UpdateBoard></UpdateBoard>,
+        loader: ({params}) =>fetch(`http://localhost:9000/users/${params.id}`)
+      },
+      {
         path: "/deleteBord",
         element: <DeleteBord></DeleteBord>,
       },
@@ -78,7 +86,7 @@ const router = createBrowserRouter([
       {
         path: "/newbord",
         element: <Newbord></Newbord>
-      }
+      },
     ]
   },
 ]);

@@ -82,23 +82,6 @@ const user = {name, column1, column2, column3}
        });
    }
  });
-
-//  fetch('http://localhost:9000/users', {
-//   method: 'POST',
-//   headers: {
-//     "content-Type": "application/json",
-//   },
-//   body: JSON.stringify(user)
-//  })
-//  .then(res => res.json())
-//  .then(data => {
-//   console.log(data)
-//   if(data.insertedId){
-//     alert('Board name added successfully')
-//     form.reset();
-//   }
-//  })
-
 }
 // const [card, setCard] = useState([])
 // useEffect(() =>{

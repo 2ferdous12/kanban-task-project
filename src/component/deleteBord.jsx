@@ -52,6 +52,7 @@ const deleteBord = ({data}) => {
             alert("An error occurred while deleting data.");
           });
       };
+      
     return (
         <div>
    <p onClick={() => handleDelete(_id)} className="font-bold cursor-pointer   text-red-600">Delete Board</p>

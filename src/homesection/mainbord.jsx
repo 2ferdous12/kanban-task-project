@@ -20,6 +20,31 @@ const [selectedTask, setSelectedTask] = useState(null);
       .then((res) => res.json())
       .then((data) => setTaskdata333(data));
   }, []);
+
+  console.log(taskdata333)
+
+  const handleDelete = _id => {
+    console.log('clicked', _id)
+
+    console.log("delete", _id);
+    fetch(`http://localhost:9000/use/${_id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.deletedCount > 0) { 
+          alert("Deleted successfully");
+          const remining = selectedTask.filter(user => user._id !== _id)
+          setSelectedTask(remining)
+        }
+      })
+
+  };
+
+
+
+
 // 
   return (
     <div className="grid grid-cols-1 w-[375px] md:w-[768px] h-[50px] lg:w-[1100px] md:grid-cols-3 lg:grid-cols-3">
@@ -69,9 +94,11 @@ const [selectedTask, setSelectedTask] = useState(null);
     <div className=" top-[9%] right-[22%]
      w-[180px] h-[90px] p-5 space-y-2 bg-[#FFFFFF] shadow-md rounded-lg absolute">
  
-    <p className="font-semibold cursor-pointer text-gray-500">Edit Board</p>
-     <Link to={`/updateTask/${selectedTask._id}`}
-     className="font-semibold cursor-pointer text-gray-500">Edit card</Link>
+
+ <p onClick={() => handleDelete(selectedTask._id)} className="font-semibold cursor-pointer text-gray-500">Delete task</p>
+  
+  <Link to={`/updateTask/${selectedTask._id}`}
+  className="font-semibold cursor-pointer text-gray-500">Edit Task</Link>
   
      </div>
  )}
@@ -147,9 +174,9 @@ const [selectedTask, setSelectedTask] = useState(null);
               {edit && (
 
         <div className=" top-[9%] right-[22%]  w-[180px] h-[90px] p-5 space-y-2 bg-[#FFFFFF] shadow-md rounded-lg absolute">
-        <p className="font-semibold cursor-pointer text-gray-500">Edit Board</p>
-        <Link to={`/updateTask/${selectedTask._id}`}
-        className="font-semibold cursor-pointer text-gray-500">Edit card</Link>
+   <p onClick={() => handleDelete(selectedTask._id)}  className="font-semibold cursor-pointer text-gray-500">Delete task</p>
+  <Link to={`/updateTask/${selectedTask._id}`}
+  className="font-semibold cursor-pointer text-gray-500">Edit Task</Link>
   
    </div>
  )}
@@ -225,9 +252,9 @@ const [selectedTask, setSelectedTask] = useState(null);
 
    <div className=" top-[9%] right-[22%]
    w-[180px] h-[90px] p-5 space-y-2 bg-[#FFFFFF] shadow-md rounded-lg absolute">
-  <p className="font-semibold cursor-pointer text-gray-500">Edit Board</p>
+  <p onClick={() => handleDelete(selectedTask._id)}  className="font-semibold cursor-pointer text-gray-500">Delete task</p>
   <Link to={`/updateTask/${selectedTask._id}`}
-  className="font-semibold cursor-pointer text-gray-500">Edit card</Link>
+  className="font-semibold cursor-pointer text-gray-500">Edit Task</Link>
   
    </div>
  )}

@@ -1,12 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import CreateBoard from "../component/createBoard";
 import { BiHide } from "react-icons/bi";
 
 const sitebar = () => {
 const [theme, setTheme] = useState('light')
-
 const [isSidebarVisible, setIsSidebarVisible] = useState(true);
+
+const [taskdata333, setTaskdata333] = useState([]);
+
+useEffect(() => {
+    fetch("http://localhost:9000/users")
+      .then((res) => res.json())
+      .then((data) => setTaskdata333(data));
+  }, []);
+
+
+
+
 const toggleSidebar = () => {
   setIsSidebarVisible(!isSidebarVisible);
 };
@@ -30,7 +41,7 @@ else{
        w-[200px] md:w-[260px]  lg:w-[300px]  shadow-md  bg-[#FFFFFF] " >
             <div className="flex flex-col  justify-between">
  <div className="pl-1 md:pl-2 lg:pl-3 min-h-[calc(100vh-200px)] md:w-[260px] lg:w-[300px]  ">
- <h1 className="text-xl pb-3 font-semibold text-gray-500">ALL BOARDS (3)</h1>     
+ <h1 className="text-xl pb-3 font-semibold text-gray-500">ALL BOARDS ({taskdata333.length})</h1>     
     
      <NavLink to="/" 
      className={({isActive}) => isActive ? 'flex pb-1 text-white items-center text-xl   md:pl-3 font-semibold pl-1 lg:pl-4 w-[200px]  md:w-[240px] bg-[#635FC7]  hover:text-[#635FC7] hover:bg-[#F4F7FD]  lg:w-[270px] rounded-r-full  h-[45px]  '
