@@ -108,7 +108,7 @@ className=" block md:hidden lg:hidden
     onSubmit={taskHandle}
      className="mt-5">
     <label className="text-xl  font-semibold text-gray-500 ">Title</label> <br />
-    <input className="w-[295px]  md:w-[416px] lg:w-[416px] mt-2 mb-3 border-2 border-[#E4EBFA] rounded-sm text-xl p-3 h-[40px] text-gray-400 " 
+    <input className="w-[295px] text-balance  md:w-[416px] lg:w-[416px] mt-2 mb-3 border-2 border-[#E4EBFA] rounded-sm text-xl p-3 h-[40px] text-gray-400 " 
     type="text"
     name="title"
     required
@@ -116,7 +116,7 @@ className=" block md:hidden lg:hidden
 
     <label className="text-xl  font-semibold text-gray-500 ">Description</label> <br />
     <textarea className="w-[295px]  md:w-[416px] lg:w-[416px] mt-2 mb-3 border-2
-     border-[#E4EBFA] rounded-sm text-xl p-2 h-[112px] text-gray-400 " 
+     border-[#E4EBFA] text-balance rounded-sm text-xl p-2 h-[112px] text-gray-400 " 
      id="" cols="30" rows="10"
      type="text"
      name="textarea"
@@ -131,7 +131,7 @@ className=" block md:hidden lg:hidden
     <label className="text-xl mt-5 font-semibold text-gray-500">Subtasks</label>
       <div className="flex items-center gap-3 relative">
         <input
-          className="w-[264px] md:w-[385px] lg:w-[385px] mt-2 border-2 rounded-sm text-xl p-3 h-[40px] text-black"
+          className="w-[264px] text-balance md:w-[385px] lg:w-[385px] mt-2 border-2 rounded-sm text-xl p-3 h-[40px] text-black"
           type="text"
           placeholder="e.g. Make coffee"
           name="substak1"
@@ -155,7 +155,7 @@ className=" block md:hidden lg:hidden
 
       <div className="flex items-center mt-3 mb-3 gap-3 relative">
         <input
-          className="w-[264px] md:w-[385px] lg:w-[385px] mt-2 border-2 rounded-sm text-xl p-3 h-[40px] text-black"
+          className="w-[264px] text-balance md:w-[385px] lg:w-[385px] mt-2 border-2 rounded-sm text-xl p-3 h-[40px] text-black"
           type="text"
           placeholder="e.g. Drink coffee & smile"
           name="substak2"

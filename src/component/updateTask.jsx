@@ -6,8 +6,6 @@ const updateTask = () => {
 
   const [inputValue, setInputValue] = useState('');
   const [inputValue2, setInputValue2] = useState('');
-  const [borderColor, setBorderColor] = useState('');
-  const [borderColor2, setBorderColor2] = useState('');
   const [imgSrc, setImgSrc] = useState('/images/Group 18.png');
   const [imgSrc2, setImgSrc2] = useState('/images/Group 18.png');
   const [taskdata333, setTaskdata333] = useState([]);
@@ -23,25 +21,21 @@ const updateTask = () => {
   };
   function handleInputChange(event) {
     setInputValue(event.target.value);
-    setBorderColor('');
     setImgSrc('/images/Group 18.png');
   }
 
   function handleInputChange2(event) {
     setInputValue2(event.target.value);
-    setBorderColor2('');
     setImgSrc2('/images/Group 18.png');
   }
 
   function handleClearInput() {
     setInputValue('');
-    setBorderColor('red');
     setImgSrc('/public/images/Group 18 (1).png');
   }
 
   function handleClearInput2() {
     setInputValue2('');
-    setBorderColor2('red');
     setImgSrc2('/public/images/Group 18 (1).png');
   }
 
@@ -79,7 +73,9 @@ const updateTask = () => {
    </button>
   </Link>
 
-    <div className="absolute left-[41%] top-[20%]">
+    <div className="absolute left-[3%] md:left-[41%] lg:left-[41%] 
+      top-[10%] md:top-[20%] lg:top-[20%]
+    ">
     <div className=" w-[350px] md:w-[450px]  lg:w-[450px]  bg-[#FFFFFF] h-[675px] p-5  ">
     <div className="">   
 
@@ -129,13 +125,9 @@ const updateTask = () => {
           name="substak1"
           defaultValue={load?.substak1}         
           onChange={handleInputChange}
-          style={{ borderColor: borderColor }}
+     
         />
-        {borderColor === 'red' && inputValue === '' && (
-          <span className="absolute right-14 top-1/2 transform -translate-y-1/2 font-semibold text-red-500">
-            Cant be empty
-          </span>
-        )}
+
         <img
           className="h-[15px] w-[15px]"
           src={imgSrc}
@@ -153,13 +145,9 @@ const updateTask = () => {
           name="substak2"
           defaultValue={load?.substak2}
           onChange={handleInputChange2}
-          style={{ borderColor: borderColor2 }}
+
         />
-        {borderColor2 === 'red' && inputValue2 === '' && (
-          <span className="absolute right-14 top-1/2 transform -translate-y-1/2 font-semibold text-red-500">
-            Cant be empty
-          </span>
-        )}
+  
         <img
           className="h-[15px] w-[15px]"
           src={imgSrc2}
@@ -178,7 +166,7 @@ const updateTask = () => {
       <p className="w-[295px]  md:w-[416px] lg:w-[416px] border-2 text-xs mb-2  border-solid 
       border-gray-300 rounded-md mx-auto p-3 mt-2 h-[40px]">
       {taskdata333.map((task, index) => (
-      <select key={index}  className="pr-[300px] text-xl font-semibold  -mt-2 bg-white" 
+      <select key={index}  className="pr-[170px] md:pr-[300px] lg:pr-[300px] text-xl font-semibold  -mt-2 bg-white" 
        name="status"
       defaultValue={load?.status}
       id=""

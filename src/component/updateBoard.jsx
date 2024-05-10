@@ -76,7 +76,8 @@ const updateBoard = () => {
    </button>
      </Link>
        
-     <div  className="absolute left-[41%] top-[20%]">
+     <div  className="absolute left-[3%] md:left-[41%] lg:left-[41%] 
+      top-[10%] md:top-[20%] lg:top-[20%]">
      <div className="mx-auto">
      <div className="modal-box w-[350px] md:w-[450px]  lg:w-[450px]  bg-[#FFFFFF] h-[480px] p-5  ">
     <div className="">     

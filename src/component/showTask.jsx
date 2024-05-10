@@ -37,6 +37,12 @@ const showTask = () => {
       })
 
   };
+  const [taskdata333, setTaskdata333] = useState([]);
+  useEffect(() =>{
+    fetch('http://localhost:9000/users')
+    .then(res => res.json())
+    .then(data => setTaskdata333(data))
+})
 
     return (
         <div className="bg-[#F4F7FD] w-full min-h-[calc(100vh-120px)] p-5">
@@ -45,26 +51,88 @@ const showTask = () => {
                     <p className="text-xl font-semibold">Go Main Page</p>
                 </button>
             </Link>
-            <div className="absolute left-[41%] top-[20%]">
-            <div className=" w-[350px] md:w-[450px]  lg:w-[450px]  bg-[#FFFFFF] h-[675px] p-5">
-            <div className="flex">
-            <p>{useload?.title}</p>
+            <div className="absolute left-[3%] md:left-[41%] lg:left-[41%]
+             top-[15%] md:top-[25%] lg:top-[25%]">
+            <div className=" w-[350px] md:w-[450px]  lg:w-[450px] 
+             bg-[#FFFFFF]  p-5">
+            <div className=" relative">
+            <p className="text-balance text-xl font-semibold">{useload?.title}</p>
 
             <div>
-            <div className="absolute top-[10%] right-0">
+            <div className="absolute top-[5%] right-0">
             <div>
-            <img onClick={editDiv} className="h-[15px] w-[15px]  " src="/images/Group 18.png" alt="" />
+            <div className=" w-[20px] h-[20px]" onClick={editDiv}>
+            <img  className=" cursor-pointer w-[4px] h-[20px] mt-1 " src="/images/Group 6.png" alt="" />
+            </div>
+            
             {edit && (
-            <div className=" top-[9%] right-[22%]
-            w-[180px] h-[90px] p-5 space-y-2 bg-[#FFFFFF] shadow-md rounded-lg absolute">
-               <p onClick={() => handleDelete(useload?._id)} className="font-semibold cursor-pointer text-gray-500">Delete task</p>
-             <Link to={`/updateTask/${useload?._id}`}
+            <div className="   space-y-3 right-[25%]
+            w-[180px] h-[90px] p-5  bg-[#FFFFFF] shadow-md rounded-lg absolute">
+                  <Link to={`/updateTask/${useload?._id}`}
              className="font-semibold cursor-pointer text-gray-500">Edit Task</Link>
+               <p onClick={() => handleDelete(useload?._id)} className="font-semibold cursor-pointer text-red-500">Delete task</p>
+           
              </div>
                )}
              </div>
             </div>
             </div>
+            <p className=" text-balance mt-4 text-gray-500 font-semibold">{useload?.textarea}</p> <br />
+            <p className=" text-balance -mt-2 text-gray-500  font-semibold">{useload?.substak1}</p>  <br />
+            <p className=" text-balance  -mt-2 text-gray-500  font-semibold">{useload?.substak2}</p>  <br />
+
+
+
+           <div  className="w-[300px]  flex gap-2 justify-center items-center md:w-[385px] lg:w-[385px] mt-2 border-2
+             rounded-sm text-xl p-3 h-[60px] md:h-[40px] lg:h-[40px] bg-[#F4F7FD]">
+           <input className="w-[20px] h-[20px]" type="checkbox" />
+           <p className="text-gray-500 line-through font-semibold text-[15px]">  
+           Research competitor pricing and business models
+           </p>
+           </div>
+
+           <div  className="w-[300px] flex gap-2 justify-center items-center md:w-[385px] lg:w-[385px] mt-2 border-2
+             rounded-sm text-xl p-3 h-[60px] md:h-[40px] lg:h-[40px] bg-[#F4F7FD]">
+           <input className="w-[20px] h-[20px]" type="checkbox" />
+           <p className="text-gray-500 font-semibold text-[15px]">  
+           Research competitor pricing and business models
+           </p>
+           </div>
+
+           <div  className="w-[300px]  mb-5 flex gap-5 justify-center items-center md:w-[385px] lg:w-[385px] mt-2 border-2
+             rounded-sm text-xl p-3 h-[60px] bg-[#F4F7FD]">
+           <input className="w-[20px] h-[20px]" type="checkbox" />
+           <p className="text-gray-500 hidden md:block lg:block font-semibold text-[15px]">  
+           Talk to potential customers about our proposed <br />
+           solution and
+            ask for fair price expectancy
+           </p>
+           <p className="text-gray-500 font-semibold block md:hidden lg:hidden text-[15px]">  
+           Surveying and testing
+           </p>
+
+           </div>
+
+    <label className="text-xl   font-semibold text-gray-500 ">Current Status</label> <br />
+      <div className="flex items-center mt-1 mb-2 gap-3">
+      <p className="w-[295px]  md:w-[416px] lg:w-[416px] border-2 text-xs mb-2  border-solid 
+      border-gray-300 rounded-md mx-auto p-3 mt-2 h-[40px]">
+      {taskdata333.map((task, index) => (
+      <select key={index}  className="pr-[170px] md:pr-[300px] lg:pr-[300px] text-xl font-semibold  -mt-2 bg-white" 
+       name="status"
+      defaultValue={useload?.status}
+      id=""
+   >
+  <option value="todo">{task.column1}</option>
+  <option value="doing">{task.column2}</option>
+  <option value="done">{task.column3}</option>
+  </select>
+   ))}
+   </p>
+  </div>
+
+          
+            
             </div>
 
         </div>
