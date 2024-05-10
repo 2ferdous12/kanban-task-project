@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-// import { Link } from "react-router-dom";
+import { useState } from "react";
 const createBoard = () => {
   const [inputValue, setInputValue] = useState('');
   const [inputValue2, setInputValue2] = useState('');
@@ -63,7 +62,6 @@ const user = {name, column1, column2, column3}
      alert("Board with this name already exists");
    } else {
      const user = { name, column1, column2, column3 };
-     console.log(user);
 
      fetch("http://localhost:9000/users", {
        method: "POST",
@@ -74,49 +72,30 @@ const user = {name, column1, column2, column3}
      })
        .then((res) => res.json())
        .then((data) => {
-         console.log(data);
-         if (data.insertedId) {
-           alert("Board name added successfully");
-           form.reset();
+        console.log(data);
+        if (data.insertedId) {
+        alert("Board name added successfully");
+        form.reset();
          }
        });
-   }
+  }
  });
 }
-// const [card, setCard] = useState([])
-// useEffect(() =>{
-//   fetch('/fake.json')
-//   .then(res => res.json())
-//   .then(data =>setCard(data))
-// }, [])
-// const items = card && card.find(item=> item.column1 == card.column1)
-// console.log(items)
-
-
-
-// console.log(items)
-// useEffect(() =>{
-//   fetch('http://localhost:9000/users')
-//   .then(res => res.json())
-//   .then(data =>setCard(data))
-// }, [])
-
 
     return (
 <div className="mx-auto">
 <div className="modal-box w-[350px] md:w-[450px]  lg:w-[450px]  bg-[#FFFFFF] h-[480px] p-5  ">
- <div className="">     
-
- <div className="flex  relative  ">
-<h3 className="font-bold text-black text-2xl  ">Add New Board</h3>
-<div>
-<form method="dialog" className="absolute top-[22%] right-0">
-        <button className="">
-        <img className="h-[15px] w-[15px]  " src="/images/Group 18.png" alt="" />
-        </button>
-      </form>
-</div>
-</div>
+  <div className="">    
+  <div className="flex  relative  ">
+  <h3 className="font-bold text-black text-2xl  ">Add New Board</h3>
+  <div>
+  <form method="dialog" className="absolute top-[22%] right-0">
+      <button className="">
+      <img className="h-[15px] w-[15px]  " src="/images/Group 18.png" alt="" />
+      </button>
+       </form>
+      </div>
+      </div>
 
     <form 
     onSubmit={handleBoard}
@@ -206,18 +185,16 @@ const user = {name, column1, column2, column3}
     
     <button 
      className="w-[295px] md:w-[416px] lg:w-[416px] h-[40px] bg-[#F4F7FD]
-      rounded-full mb-5 ">+ Add New Column</button>
+    rounded-full mb-5 ">+ Add New Column</button>
 
-<input className="w-[295px] md:w-[416px] lg:w-[416px]
+  <input className="w-[295px] md:w-[416px] lg:w-[416px]
   h-[40px] bg-[#635FC7] text-white rounded-full "
   type="submit" value="Create New Board" />
 
-
-    
     </form>
- </div>
-      </div>
-</div>
+    </div>
+    </div>
+    </div>
     );
 };
 

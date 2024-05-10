@@ -1,6 +1,4 @@
 
-
-
 const columnSection = ({task}) => {
     const {_id, title, substak1, substak2} = task;
    console.log(_id)

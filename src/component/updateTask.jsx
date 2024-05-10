@@ -12,7 +12,6 @@ const updateTask = () => {
   const [imgSrc2, setImgSrc2] = useState('/images/Group 18.png');
   const [taskdata333, setTaskdata333] = useState([]);
   const [taskStatus, setTaskStatus] = useState('todo');
-
   useEffect(() =>{
     fetch('http://localhost:9000/users')
     .then(res => res.json())
@@ -49,13 +48,12 @@ const updateTask = () => {
   const taskUpdateHandle = (e) =>{
     e.preventDefault();
     const form =e.target;
-
     const title = form.title.value;
     const textarea = form.textarea.value;
     const substak1 = form.substak1.value;
     const substak2 = form.substak2.value;
     const status = form.status.value;
-   const update = {title, textarea, substak1, substak2, status}
+    const update = {title, textarea, substak1, substak2, status}
 
    fetch(`http://localhost:9000/use/${load._id}`, {
     method: "PUT",
@@ -68,36 +66,33 @@ const updateTask = () => {
    .then(data =>{
     console.log(data);
     if(data.modifiedCount> 0){
-alert('updated succesfully')
+    alert('updated succesfully')
     }
-   })
-   
-
-  }
+    })
+    }
 
     return (
-        <div className="bg-[#F4F7FD] w-full min-h-[calc(100vh-120px)] p-5">
-<Link to="/board">
+    <div className="bg-[#F4F7FD] w-full min-h-[calc(100vh-120px)] p-5">
+   <Link to="/board">
    <button className="btn">
-  <p className="text-xl font-semibold">Go Main Page</p>
-  </button>
-</Link>
-        <div className="absolute left-[41%] top-[20%]">
-        <div className=" w-[350px] md:w-[450px]  lg:w-[450px]  bg-[#FFFFFF]
- h-[675px] p-5  ">
- <div className="">   
+   <p className="text-xl font-semibold">Go Main Page</p>
+   </button>
+  </Link>
 
-    
-<div className="flex  relative  ">
-<h3 className="font-bold text-black text-2xl  ">Add New Task</h3>
-<div>
-<form method="dialog" className="absolute top-[22%] right-0">
+    <div className="absolute left-[41%] top-[20%]">
+    <div className=" w-[350px] md:w-[450px]  lg:w-[450px]  bg-[#FFFFFF] h-[675px] p-5  ">
+    <div className="">   
+
+   <div className="flex  relative  ">
+   <h3 className="font-bold text-black text-2xl  ">Add New Task</h3>
+   <div>
+  <form method="dialog" className="absolute top-[22%] right-0">
         <button className="">
         <img className="h-[15px] w-[15px]  " src="/images/Group 18.png" alt="" />
         </button>
-      </form>
-</div>
-</div>
+       </form>
+  </div>
+  </div>
 
     <form 
   onSubmit={taskUpdateHandle}
@@ -132,8 +127,7 @@ alert('updated succesfully')
           type="text"
           placeholder="e.g. Make coffee"
           name="substak1"
-          defaultValue={load?.substak1}
-          value={inputValue}
+          defaultValue={load?.substak1}         
           onChange={handleInputChange}
           style={{ borderColor: borderColor }}
         />
@@ -158,7 +152,6 @@ alert('updated succesfully')
           placeholder="e.g. Drink coffee & smile"
           name="substak2"
           defaultValue={load?.substak2}
-          value={inputValue2}
           onChange={handleInputChange2}
           style={{ borderColor: borderColor2 }}
         />
@@ -176,40 +169,34 @@ alert('updated succesfully')
         />
       </div>
 
-      <button
-       
-        className="w-[295px] md:w-[416px] lg:w-[416px] h-[40px] bg-[#F4F7FD] rounded-full mb-2 font-bold text-[#635FC7]">
+      <button className="w-[295px] md:w-[416px] lg:w-[416px] h-[40px] bg-[#F4F7FD] rounded-full mb-2 font-bold text-[#635FC7]">
         + Add New Column
-      </button>
+       </button>
 
-<label className="text-xl  font-semibold text-gray-500 ">Status</label> <br />
-
-<div className="flex items-center mt-1 mb-2 gap-3">
-<p
- className="w-[295px]  md:w-[416px] lg:w-[416px] border-2 text-xs mb-2  border-solid 
- border-gray-300 rounded-md mx-auto p-3 mt-2 h-[40px]">
-    {taskdata333.map((task, index) => (
+      <label className="text-xl  font-semibold text-gray-500 ">Status</label> <br />
+      <div className="flex items-center mt-1 mb-2 gap-3">
+      <p className="w-[295px]  md:w-[416px] lg:w-[416px] border-2 text-xs mb-2  border-solid 
+      border-gray-300 rounded-md mx-auto p-3 mt-2 h-[40px]">
+      {taskdata333.map((task, index) => (
       <select key={index}  className="pr-[300px] text-xl font-semibold  -mt-2 bg-white" 
-   name="status"
-   defaultValue={load?.status}
-  id=""
- onChange={(e) => handleStatusChange(e.target.value)}>
+       name="status"
+      defaultValue={load?.status}
+      id=""
+  onChange={(e) => handleStatusChange(e.target.value)}>
   <option value="todo">{task.column1}</option>
   <option value="doing">{task.column2}</option>
   <option value="done">{task.column3}</option>
-</select>
+  </select>
    ))}
- </p>
-</div>
+   </p>
+  </div>
 
 <input className="w-[295px] hover:bg-[#F4F7FD] hover:text-[#635FC7] md:w-[416px] font-bold lg:w-[416px]
   h-[40px] bg-[#635FC7] text-white rounded-full "
   type="submit" value="Save Chenge" />
-
- 
- </form>
- </div>
-</div>
+  </form>
+  </div>
+  </div>
         </div>
         <Mainbord taskStatus={taskStatus} taskdata333={taskdata333}></Mainbord>
         </div>

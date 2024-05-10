@@ -2,23 +2,12 @@ import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import CreateBoard from "./component/createBoard";
 import CreateNewTask from "./component/createNewTask";
-import DeleteBord from "./component/deleteBord";
 
-const navbar = () => {
+  const navbar = () => {
   const [theme, setTheme] = useState('light')
   const [divOpen, setDivOpen] = useState(false);
   const [edit, setEdit] = useState(null)
-  console.log(edit)
-  // const [taskdat1, serTaskdata1] = useState([]);
-
-  // useEffect(() =>{
-  //     fetch('http://localhost:9000/users')
-  //     .then(res => res.json())
-  //     .then(data => serTaskdata1(data))
-  // })
-
   const [taskdata333, setTaskdata333] = useState([]);
-
   const [Taskda, setTaskda] = useState([]);
 
   useEffect(() => {
@@ -37,23 +26,21 @@ const navbar = () => {
   const handleDelete = _id => {
       console.log('clicked')
       if (taskdata333.length > 0) {
-        alert("Data cannot be deleted until the card is populated.");
-        return;
+      alert("Data cannot be deleted until the task is populated.");
+      return;
       }
     
       if (!_id) {
-        alert("No card data available.");
+        alert("No task data available.");
         return;
       }
 
-
-      console.log("delete", _id);
       fetch(`http://localhost:9000/users/${_id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
+        console.log(data);
           if (data.deletedCount > 0) {
             alert("Deleted successfully");
             const remining = Taskda.filter(user => user._id !== _id)
@@ -66,22 +53,18 @@ const navbar = () => {
         });
     };
 
-
   const toggleDiv = () => {
   setDivOpen(!divOpen);
   };
-
 
   const handleToggle = (e) =>{
   if(e.target.checkbox){
    setTheme('dark')
   }
-
   else{
   setTheme('light')
   }
   }
-
 
     return (
 <div className="navbar bg-[#FFFFFF] h-[90px] shadow-md">
@@ -91,9 +74,8 @@ const navbar = () => {
     <div>
       <img className='w-[30px] h-[30px] ml-2' src="/images/Group 15.png" alt="" onClick={toggleDiv} />
       {divOpen && (
-        <div className="absolute top-20 left-[15%]">
+      <div className="absolute top-20 left-[15%]">
       <div className="space-y-1 w-[275px] shadow-lg bg-[#FFFFFF] mt-4 p-3 rounded-lg  list-none">
- 
           <h1 className="text-xl pb-3 font-semibold text-gray-500">ALL BOARDS ({taskdata333.length})</h1>     
               <NavLink to="/" 
               className={({isActive}) => isActive ? 'flex pb-1 text-white items-center text-xl   md:pl-3 font-semibold pl-1 lg:pl-4 w-[200px]  md:w-[240px] bg-[#635FC7]  hover:text-[#635FC7] hover:bg-[#F4F7FD]  lg:w-[270px] rounded-r-full  h-[45px]  '
@@ -136,7 +118,6 @@ const navbar = () => {
 </dialog>     
                
 </div>
-
  <div className="flex justify-center ">
 <div className="bg-[#F4F7FD] rounded-lg mt-1
  w-[250px] h-[50px] flex justify-center items-center">
@@ -151,33 +132,27 @@ const navbar = () => {
 </label>
 </div>
 </div>
-               <p>
-              
-               </p>
-                </div>
+           <p>
+          </p>
+        </div>
         </div>
       )}
     </div>
-
-
   <p className=" text-2xl w-[250px] font-semibold text-black ">Platform Launch </p>
-  </div>
-<div className='w-[300px] md:w-[250px] lg:w-[300px]  border-r-0 md:border-r-0 lg:border-r-2 pl-5'>
-<img className='w-[150px]  hidden md:block lg:block h-[30px]' src="/images/Group 16 (1).png" alt="" />
+   </div>
+    <div className='w-[300px] md:w-[250px] lg:w-[300px]  border-r-0 md:border-r-0 lg:border-r-2 pl-5'>   
+    <img className='w-[150px]  hidden md:block lg:block h-[30px]' src="/images/Group 16 (1).png" alt="" />
+   </div>
+   <div className="w-[210px] md:w-[250px] lg:w-[220px] hidden md:block lg:block">
 
-</div>
-
-<div className="w-[210px] md:w-[250px] lg:w-[220px] hidden md:block lg:block">
-
-{taskdata333
-            .map((task, index) => (
-            <div key={index} >
+      {taskdata333
+      .map((task, index) => (
+       <div key={index} >
       <p className='text-2xl pl-0 md:pl-0 lg:pl-8 font-semibold text-black  '>{task.name}</p>
-              </div>
-            ))}
+      </div>
+    ))}
 
-
-</div>
+  </div>
   </div>
 
   <div className="navbar-end space-x-3 pr-5">
@@ -187,34 +162,28 @@ const navbar = () => {
       <CreateNewTask></CreateNewTask>
     }
    </div>
-
- <div>
-
+   <div>
  <div id="todo">
           {taskdata333
             .map((task, index) => (
             <div key={index}>
-    <img onClick={() => setEdit(task)} className="ml-3 cursor-pointer mr-3 w-[4px] h-[20px] mt-1 " src="/images/Group 6.png" alt="" />
-              </div>
+            <img onClick={() => setEdit(task)} className="ml-3 cursor-pointer mr-3 w-[4px] h-[20px] mt-1 " src="/images/Group 6.png" alt="" />
+            </div>
             ))}
         </div>
 
  {edit && (
    <div className=" top-[9%] right-[22%]
    w-[180px] h-[90px] p-5 space-y-2 bg-[#FFFFFF] shadow-md rounded-lg absolute">
- 
   <Link to={`/updateBoard/${edit._id}`}
    className="font-semibold cursor-pointer text-gray-500">Edit Board</Link>
- <p onClick={() => handleDelete(edit._id)} 
-       className="font-semibold cursor-pointer text-gray-500">Delete board</p>
+  <p onClick={() => handleDelete(edit._id)} 
+  className="font-semibold cursor-pointer text-gray-500">Delete board</p>
 
    </div>
  )}
-
  </div>
-
-
-  </div>
+</div>
 </div>
     );
 };

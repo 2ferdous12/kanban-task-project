@@ -4,18 +4,13 @@ import './index.css'
 import Root from './root';
 import Marketing from './sitebar/marketing';
 import Roadmap from './sitebar/roadmap';
-import Newbord from './sitebar/newbord';
 import Mainhome from './homesection/mainhome';
 import ColumnSection from './component/columnSection';
 import Board from './homesection/board';
-import DeleteBord from './component/deleteBord';
 import Mainbord from './homesection/mainbord';
-import Modal from './component/modal';
 import UpdateTask from './component/updateTask';
-import ViewTask from './component/viewTask';
+import ShowTask from './component/showTask';
 import UpdateBoard from './component/updateBoard';
-
-
 
 import {
   createBrowserRouter,
@@ -35,13 +30,11 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Mainhome></Mainhome>,
-
       },
       
       {
         path: "/mainbord",
         element: <Mainbord></Mainbord>,
-      
       },
       {
         path: "/board",
@@ -49,8 +42,8 @@ const router = createBrowserRouter([
         loader: () => fetch('http://localhost:9000/users')
       },
       {
-        path: "/viewTask/:id",
-        element: <ViewTask></ViewTask>,
+        path: "/showTask/:id",
+        element: <ShowTask></ShowTask>,
         loader: ({params}) =>fetch(`http://localhost:9000/use/${params.id}`)
       },
       {
@@ -64,29 +57,14 @@ const router = createBrowserRouter([
         loader: ({params}) =>fetch(`http://localhost:9000/users/${params.id}`)
       },
       {
-        path: "/deleteBord",
-        element: <DeleteBord></DeleteBord>,
-      },
-      {
-        path: "/modal",
-        element: <Modal></Modal>,
-      },
-
-      {
         path: "/roadmap",
         element: <Roadmap></Roadmap>
       },
-      // },
-
       {
         path: "/marketing",
         element: <Marketing></Marketing>
       },
     
-      {
-        path: "/newbord",
-        element: <Newbord></Newbord>
-      },
     ]
   },
 ]);
