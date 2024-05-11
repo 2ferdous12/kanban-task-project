@@ -45,17 +45,17 @@ const createBoard = () => {
   }
 
 
+
 const handleBoard = (event) =>{
   event.preventDefault();
  const form =event.target;
-
  const name = form.name.value;
  const column1 = form.column1.value;
  const column2 = form.column2.value;
  const column3 = form.column3.value;
 const user = {name, column1, column2, column3}
  console.log(user);
- fetch(`http://localhost:9000/users?name=${name}`)
+ fetch(`http://localhost:4000/users?name=${name}`)
  .then((res) => res.json())
  .then((data) => {
    if (data.length > 0) {
@@ -63,7 +63,7 @@ const user = {name, column1, column2, column3}
    } else {
      const user = { name, column1, column2, column3 };
 
-     fetch("http://localhost:9000/users", {
+     fetch("http://localhost:4000/users", {
        method: "POST",
        headers: {
          "content-Type": "application/json",
@@ -84,7 +84,7 @@ const user = {name, column1, column2, column3}
 
     return (
 <div className="mx-auto">
-<div className="modal-box w-[350px] md:w-[450px]  lg:w-[450px]  bg-[#FFFFFF] h-[480px] p-5  ">
+<div className="modal-box -ml-4 md:-ml-0 lg:-ml-0 w-[350px] md:w-[450px]  lg:w-[450px]  bg-[#FFFFFF] h-[480px] p-5  ">
   <div className="">    
   <div className="flex  relative  ">
   <h3 className="font-bold text-black text-2xl  ">Add New Board</h3>
@@ -188,7 +188,7 @@ const user = {name, column1, column2, column3}
     rounded-full mb-5 ">+ Add New Column</button>
 
   <input className="w-[295px] md:w-[416px] lg:w-[416px]
-  h-[40px] bg-[#635FC7] text-white rounded-full "
+  h-[40px] bg-[#635FC7] cursor-pointer text-white rounded-full "
   type="submit" value="Create New Board" />
 
     </form>

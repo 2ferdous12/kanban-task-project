@@ -10,14 +10,22 @@ import CreateNewTask from "./component/createNewTask";
   const [taskdata333, setTaskdata333] = useState([]);
   const [Taskda, setTaskda] = useState([]);
 
+  const toggleEdit = (task) => {
+    if (edit && edit._id === task._id) {
+      setEdit(null); 
+    } else {
+      setEdit(task); 
+    }
+  };
+
   useEffect(() => {
-    fetch("http://localhost:9000/use")
+    fetch("http://localhost:4000/use")
       .then((res) => res.json())
       .then((data) => setTaskda(data));
   }, []);
   
   useEffect(() => {
-      fetch("http://localhost:9000/users")
+      fetch("http://localhost:4000/users")
         .then((res) => res.json())
         .then((data) => setTaskdata333(data));
     }, []);
@@ -35,7 +43,7 @@ import CreateNewTask from "./component/createNewTask";
         return;
       }
 
-      fetch(`http://localhost:9000/users/${_id}`, {
+      fetch(`http://localhost:4000/users/${_id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())
@@ -72,7 +80,7 @@ import CreateNewTask from "./component/createNewTask";
   <div className=" block md:hidden lg:hidden flex gap-4">  
 
     <div>
-      <img className='w-[30px] h-[30px] ml-2' src="/images/Group 15.png" alt="" onClick={toggleDiv} />
+      <img className='w-[30px] h-[30px] ml-2 mr-5' src="/images/Group 15.png" alt="" onClick={toggleDiv} />
       {divOpen && (
       <div className="absolute top-20 left-[15%]">
       <div className="space-y-1 w-[275px] shadow-lg bg-[#FFFFFF] mt-4 p-3 rounded-lg  list-none">
@@ -138,7 +146,12 @@ import CreateNewTask from "./component/createNewTask";
         </div>
       )}
     </div>
-  <p className=" text-2xl w-[250px] font-semibold text-black ">Platform Launch </p>
+  {taskdata333
+      .map((task, index) => (
+       <div key={index} >
+      <p className=' text-2xl ml-1  w-[250px] font-semibold text-black '>{task.name}</p>
+      </div>
+    ))}
    </div>
     <div className='w-[300px] md:w-[250px] lg:w-[300px]  border-r-0 md:border-r-0 lg:border-r-2 pl-5'>   
     <img className='w-[150px]  hidden md:block lg:block h-[30px]' src="/images/Group 16 (1).png" alt="" />
@@ -157,31 +170,38 @@ import CreateNewTask from "./component/createNewTask";
 
   <div className="navbar-end space-x-3 pr-5">
    <div className='w-[50px] md:w-[180px] lg:w-[180px] bg-[#A8A4FF]
-    p-3 h-[32px] md:h-[48px] lg:h-[48px] mt-1 rounded-full flex justify-center items-center'> 
+    p-3 h-[32px] md:h-[48px] lg:h-[48px] mt-1 rounded-full flex justify-center
+     items-center'> 
     {
       <CreateNewTask></CreateNewTask>
     }
    </div>
    <div>
- <div id="todo">
-          {taskdata333
-            .map((task, index) => (
-            <div key={index}>
-            <img onClick={() => setEdit(task)} className="ml-3 cursor-pointer mr-3 w-[4px] h-[20px] mt-1 " src="/images/Group 6.png" alt="" />
-            </div>
-            ))}
+   <div id="todo">
+        {taskdata333.map((task, index) => (
+          <div key={index}>
+            <img
+              onClick={() => toggleEdit(task)} // Toggle edit section on image click
+              className="ml-1 cursor-pointer mr-2 w-[4px] h-[20px] mt-1"
+              src="/images/Group 6.png"
+              alt=""
+            />
+          </div>
+        ))}
+      </div>
+
+      {edit && (
+        <div className="top-[9%] right-[3%] md:right-[3%] lg:right-[10%]
+        w-[180px] h-[90px] p-5 space-y-2 bg-[#FFFFFF] shadow-md rounded-lg
+         absolute">
+          <Link to={`/updateBoard/${edit._id}`} className="font-semibold cursor-pointer text-gray-500">
+            Edit Board
+          </Link>
+          <p onClick={() => handleDelete(edit._id)} className="font-semibold cursor-pointer text-red-600">
+            Delete board
+          </p>
         </div>
-
- {edit && (
-   <div className=" top-[9%] right-[22%]
-   w-[180px] h-[90px] p-5 space-y-2 bg-[#FFFFFF] shadow-md rounded-lg absolute">
-  <Link to={`/updateBoard/${edit._id}`}
-   className="font-semibold cursor-pointer text-gray-500">Edit Board</Link>
-  <p onClick={() => handleDelete(edit._id)} 
-  className="font-semibold cursor-pointer text-gray-500">Delete board</p>
-
-   </div>
- )}
+      )}
  </div>
 </div>
 </div>

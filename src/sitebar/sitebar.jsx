@@ -4,12 +4,23 @@ import CreateBoard from "../component/createBoard";
 import { BiHide } from "react-icons/bi";
 
 const sitebar = () => {
-const [theme, setTheme] = useState('light')
+
 const [isSidebarVisible, setIsSidebarVisible] = useState(true);
 const [taskdata333, setTaskdata333] = useState([]);
+const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
+
+const handleToggle = (e) => {
+  const newTheme = e.target.checked ? 'dark' : 'light';
+  setTheme(newTheme);
+  localStorage.setItem('theme', newTheme);
+};
 
 useEffect(() => {
-    fetch("http://localhost:9000/users")
+  document.documentElement.setAttribute('data-theme', theme);
+}, [theme]);
+
+useEffect(() => {
+    fetch("http://localhost:4000/users")
       .then((res) => res.json())
       .then((data) => setTaskdata333(data));
   }, []);
@@ -17,16 +28,6 @@ useEffect(() => {
 const toggleSidebar = () => {
 setIsSidebarVisible(!isSidebarVisible);
 };
-
-const handleToggle = (e) =>{
-if(e.target.checkbox){
-  setTheme('dark')
-}
-else{
-  setTheme('light')
-}
-}
-
     return (
 
       <div className="">
@@ -82,32 +83,33 @@ rounded-r-full h-[50px] text-[#635FC7] hover:text-[#635FC7]
 </div>
 <div>
 
+<div className="flex justify-center">
+      <div className="bg-[#F4F7FD] rounded-lg mt-1 w-[250px] h-[50px] flex justify-center items-center">
+        <label className="flex cursor-pointer gap-4 text-center">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="12" cy="12" r="5" /><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" />
+          </svg>
+          <input
+            onChange={handleToggle}
+            type="checkbox"
+            checked={theme === 'dark'} 
+            className="toggle theme-controller" />
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </label>
+      </div>
+    </div>
 
-<div className="flex justify-center ">
-<div className="bg-[#F4F7FD] rounded-lg mt-1
-w-[250px] h-[50px] flex justify-center items-center">
-<label className="flex cursor-pointer gap-4 text-center">
-<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
- fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-  <circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
-<input 
-onChange={handleToggle}
-type="checkbox"
-value="dark"
-className="toggle theme-controller"/>
-<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
- fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-</label>
-</div>
-</div>
 
 <div className="   mt-2 flex justify-center ">
-<div   className=" flex items-center h-[48px] hover:bg-[#F4F7FD] w-[250px] rounded-lg justify-center gap-3">
+<div   className=" flex items-center h-[48px] cursor-pointer hover:bg-[#F4F7FD] w-[250px] rounded-lg justify-center gap-3">
 <Link onClick={toggleSidebar} >
 <BiHide className="w-6"></BiHide>
 </Link>
- <p className="text-xl font-semibold">Hide Sidebar</p>
+ <p className="text-xl cursor-pointer font-semibold">Hide Sidebar</p>
 </div>
 </div>
                 </div>

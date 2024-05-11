@@ -13,7 +13,7 @@ const createNewTask = () => {
 
 
   useEffect(() =>{
-      fetch('http://localhost:9000/users')
+      fetch('http://localhost:4000/users')
       .then(res => res.json())
       .then(data => setTaskdata333(data))
   })
@@ -58,7 +58,7 @@ const createNewTask = () => {
         console.log(use);
        
        
-        fetch('http://localhost:9000/use', {
+        fetch('http://localhost:4000/use', {
          method: 'POST',
          headers: {
            "content-Type": "application/json",
@@ -86,10 +86,10 @@ className=" block md:hidden lg:hidden
     font-semibold text-3xl md:text-4xl lg:text-4xl
      cursor-pointer  text-white ">+</a>
         
-<dialog id="my_modal_555" className="modal modal-bottom sm:modal-middle">
+<dialog id="my_modal_555" className="modal -ml-2 md:-ml-0 lg:-ml-0 modal-bottom sm:modal-middle">
 <div className="mx-auto">
-<div className="modal-box w-[350px] md:w-[450px]  lg:w-[450px]  bg-[#FFFFFF]
- h-[675px] p-5  ">
+<div className="modal-box w-[343px] md:w-[450px]  lg:w-[450px]  bg-[#FFFFFF]
+ h-[710px] md:h-[700px]  lg:h-[700px]    ">
  <div className="">   
 
     
@@ -108,11 +108,12 @@ className=" block md:hidden lg:hidden
     onSubmit={taskHandle}
      className="mt-5">
     <label className="text-xl  font-semibold text-gray-500 ">Title</label> <br />
-    <input className="w-[295px] text-balance  md:w-[416px] lg:w-[416px] mt-2 mb-3 border-2 border-[#E4EBFA] rounded-sm text-xl p-3 h-[40px] text-gray-400 " 
+    <input className="w-[295px] text-balance  text-[23px] md:w-[416px] lg:w-[416px] mt-2 mb-3 border-2 border-[#E4EBFA] rounded-sm text-xl p-3 h-[40px] text-gray-400 " 
     type="text"
     name="title"
     required
-    placeholder=""/> <br />
+    placeholder="e.g. Take coffee break"
+    /> <br />
 
     <label className="text-xl  font-semibold text-gray-500 ">Description</label> <br />
     <textarea className="w-[295px]  md:w-[416px] lg:w-[416px] mt-2 mb-3 border-2
@@ -190,7 +191,9 @@ className=" block md:hidden lg:hidden
  className="w-[295px]  md:w-[416px] lg:w-[416px] border-2 text-xs mb-2  border-solid 
  border-gray-300 rounded-md mx-auto p-3 mt-2 h-[40px]">
     {taskdata333.map((task, index) => (
-      <select key={index}  className="pr-[300px] text-xl font-semibold  -mt-2 bg-white" 
+      <select key={index}  className="pr-[180px] md:pr-[300px] text-[23px]
+       lg:pr-[300px] text-gray-500
+       font-semibold  -mt-2 bg-white" 
    name="status"
   id=""
  onChange={(e) => handleStatusChange(e.target.value)}>
@@ -202,7 +205,7 @@ className=" block md:hidden lg:hidden
  </p>
 </div>
 
-<input className="w-[295px] hover:bg-[#F4F7FD] hover:text-[#635FC7] md:w-[416px] font-bold lg:w-[416px]
+<input className="w-[295px] hover:bg-[#F4F7FD] cursor-pointer hover:text-[#635FC7] md:w-[416px] font-bold lg:w-[416px]
   h-[40px] bg-[#635FC7] text-white rounded-full "
   type="submit" value="Create Task" />
 

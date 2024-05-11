@@ -12,18 +12,18 @@ const showTask = () => {
     const [selectedTask, setSelectedTask] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:9000/use")
+    fetch("http://localhost:4000/use")
       .then((res) => res.json())
       .then((data) => setSelectedTask(data));
   }, []);
 
-  console.log(selectedTask)
+
 
   const handleDelete = _id => {
     console.log('clicked', _id)
 
     console.log("delete", _id);
-    fetch(`http://localhost:9000/use/${_id}`, {
+    fetch(`http://localhost:4000/use/${_id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -39,7 +39,7 @@ const showTask = () => {
   };
   const [taskdata333, setTaskdata333] = useState([]);
   useEffect(() =>{
-    fetch('http://localhost:9000/users')
+    fetch('http://localhost:4000/users')
     .then(res => res.json())
     .then(data => setTaskdata333(data))
 })
@@ -47,13 +47,13 @@ const showTask = () => {
     return (
         <div className="bg-[#F4F7FD] w-full min-h-[calc(100vh-120px)] p-5">
             <Link to="/board">
-                <button className="btn">
-                    <p className="text-xl font-semibold">Go Main Page</p>
+                <button className="btn  hover:bg-[#F4F7FD] rounded-full bg-[#635FC7] text-white">
+                    <p className=" font-semibold">Go To Board</p>
                 </button>
             </Link>
             <div className="absolute left-[3%] md:left-[41%] lg:left-[41%]
-             top-[15%] md:top-[25%] lg:top-[25%]">
-            <div className=" w-[350px] md:w-[450px]  lg:w-[450px] 
+             top-[18%] md:top-[25%] lg:top-[25%]">
+            <div className=" w-[350px] md:w-[450px] shadow-lg rounded-md  lg:w-[450px] 
              bg-[#FFFFFF]  p-5">
             <div className=" relative">
             <p className="text-balance text-xl font-semibold">{useload?.title}</p>
@@ -83,29 +83,29 @@ const showTask = () => {
 
 
 
-           <div  className="w-[300px]  flex gap-2 justify-center items-center md:w-[385px] lg:w-[385px] mt-2 border-2
+           <div  className="w-[300px]  flex gap-4 justify-center items-center md:w-[385px] lg:w-[385px] mt-2 
              rounded-sm text-xl p-3 h-[60px] md:h-[40px] lg:h-[40px] bg-[#F4F7FD]">
            <input className="w-[20px] h-[20px]" type="checkbox" />
-           <p className="text-gray-500 line-through font-semibold text-[15px]">  
+           <p className="text-gray-500 leading-4  font-semibold text-[15px]">  
            Research competitor pricing and business models
            </p>
            </div>
 
-           <div  className="w-[300px] flex gap-2 justify-center items-center md:w-[385px] lg:w-[385px] mt-2 border-2
+           <div  className="w-[300px] flex gap-4 justify-center items-center md:w-[385px] lg:w-[385px] mt-2 
              rounded-sm text-xl p-3 h-[60px] md:h-[40px] lg:h-[40px] bg-[#F4F7FD]">
            <input className="w-[20px] h-[20px]" type="checkbox" />
-           <p className="text-gray-500 font-semibold text-[15px]">  
+           <p className="text-gray-500 leading-4 font-semibold text-[15px]">  
            Research competitor pricing and business models
            </p>
            </div>
 
-           <div  className="w-[300px]  mb-5 flex gap-5 justify-center items-center md:w-[385px] lg:w-[385px] mt-2 border-2
+           <div  className="w-[300px]  mb-5 flex gap-5 justify-center items-center md:w-[385px] lg:w-[385px] mt-2 
              rounded-sm text-xl p-3 h-[60px] bg-[#F4F7FD]">
-           <input className="w-[20px] h-[20px]" type="checkbox" />
-           <p className="text-gray-500 hidden md:block lg:block font-semibold text-[15px]">  
-           Talk to potential customers about our proposed <br />
+           <input className="w-[40px] h-[20px]" type="checkbox" />
+           <p className="text-gray-500 leading-4	 hidden md:block lg:block font-semibold text-[15px]">  
+           Talk to potential customers about our proposed 
            solution and
-            ask for fair price expectancy
+            ask for  fair price expectancy
            </p>
            <p className="text-gray-500 font-semibold block md:hidden lg:hidden text-[15px]">  
            Surveying and testing
@@ -115,10 +115,12 @@ const showTask = () => {
 
     <label className="text-xl   font-semibold text-gray-500 ">Current Status</label> <br />
       <div className="flex items-center mt-1 mb-2 gap-3">
-      <p className="w-[295px]  md:w-[416px] lg:w-[416px] border-2 text-xs mb-2  border-solid 
-      border-gray-300 rounded-md mx-auto p-3 mt-2 h-[40px]">
+      <p className="w-[295px]  md:w-[416px] lg:w-[416px] border-2
+       text-xs mb-2  border-solid border-[#F3F3F3]
+      rounded-md mx-auto p-3 mt-2 h-[40px]">
       {taskdata333.map((task, index) => (
-      <select key={index}  className="pr-[170px] md:pr-[300px] lg:pr-[300px] text-xl font-semibold  -mt-2 bg-white" 
+      <select key={index}  className="pr-[170px] md:pr-[300px]
+       lg:pr-[300px] text-xl font-semibold  -mt-2 bg-white" 
        name="status"
       defaultValue={useload?.status}
       id=""

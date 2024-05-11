@@ -10,7 +10,7 @@ const viewTask = () => {
       const [taskdata333, setTaskdata333] = useState([]);
       const [taskStatus, setTaskStatus] = useState('todo');
       useEffect(() =>{
-        fetch('http://localhost:9000/users')
+        fetch('http://localhost:4000/users')
         .then(res => res.json())
         .then(data => setTaskdata333(data))
     })

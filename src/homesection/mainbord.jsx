@@ -13,14 +13,15 @@ const [taskdata333, setTaskdata333] = useState([]);
 
 
   useEffect(() => {
-    fetch("http://localhost:9000/use")
+    fetch("http://localhost:4000/use")
       .then((res) => res.json())
       .then((data) => setTaskdata333(data));
   }, []);
 
 
   return (
-    <div className="grid grid-cols-1 w-[375px] md:w-[768px] h-[50px] lg:w-[1100px] md:grid-cols-3 lg:grid-cols-3">
+    <div className="grid grid-cols-1 w-[375px] md:w-[768px] min-h-[calc(100vh-122px)] h-[50px]
+     lg:w-[1100px] md:grid-cols-3 lg:grid-cols-3">
 
       {/* ********* */}
     {/* first Column */}
@@ -39,7 +40,7 @@ const [taskdata333, setTaskdata333] = useState([]);
             .map((task, index) => (
             <div 
             key={index}
-             className="w-[280px] md:w-[260px] lg:w-[260px] mt-4 mb-4 p-2 space-y-1 rounded-md shadow-md bg-[#FFFFFF]"
+             className="w-[280px] hover:text-[#5744c5]  md:w-[260px] lg:w-[260px] mt-4 mb-4 p-2 space-y-1 rounded-md shadow-md bg-[#FFFFFF]"
             >
       <Link to={`/showTask/${task._id}`}>
        <p className="text-xl font-semibold text-balance">{task.title}</p>
@@ -69,7 +70,7 @@ const [taskdata333, setTaskdata333] = useState([]);
           .map((task, index) => (
           <div 
            key={index} 
-           className="w-[280px] md:w-[260px] lg:w-[260px] mt-4 mb-4 p-2 space-y-1 rounded-md shadow-md bg-[#FFFFFF]">
+           className="w-[280px] md:w-[260px] hover:text-[#5744c5] lg:w-[260px] mt-4 mb-4 p-2 space-y-1 rounded-md shadow-md bg-[#FFFFFF]">
            
            <Link to={`/showTask/${task._id}`}>
        <p className="text-xl font-semibold text-balance">{task.title}</p>
@@ -98,7 +99,7 @@ const [taskdata333, setTaskdata333] = useState([]);
             .map((task, index) => (
               <div
                 key={index}
-                className="w-[280px] md:w-[260px] lg:w-[260px] mt-4 mb-4 p-2 space-y-1 rounded-md shadow-md bg-[#FFFFFF]"
+                className="w-[280px] hover:text-[#5744c5] md:w-[260px] lg:w-[260px] mt-4 mb-4 p-2 space-y-1 rounded-md shadow-md bg-[#FFFFFF]"
               >
 
         <Link to={`/showTask/${task._id}`}>

@@ -51,7 +51,7 @@ const updateBoard = () => {
    const column3 = form.column3.value;
    const updateBoard = {name, column1, column2, column3}
 
-  fetch(`http://localhost:9000/users/${loadBoard._id}`, {
+  fetch(`http://localhost:4000/users/${loadBoard._id}`, {
     method: "PUT",
     headers: {
       "content-Type": "application/json",
@@ -69,28 +69,20 @@ const updateBoard = () => {
   }
     
     return (
-        <div className="bg-[#F4F7FD] w-full min-h-[calc(100vh-120px)] p-5">
+        <div className="bg-[#F4F7FD] w-full min-h-[calc(100vh-122px)] p-5">
             <Link to="/board">
-   <button className="btn">
-   <p className="text-xl font-semibold">Go Main Page</p>
+   <button className="btn   hover:bg-[#F4F7FD] bg-[#635FC7] text-white h-[40] rounded-full">
+   <p className="  font-semibold">Go To Board</p>
    </button>
      </Link>
        
-     <div  className="absolute left-[3%] md:left-[41%] lg:left-[41%] 
-      top-[10%] md:top-[20%] lg:top-[20%]">
+     <div  className="absolute left-[3%] md:left-[28%] lg:left-[41%] top-[20%]">
      <div className="mx-auto">
      <div className="modal-box w-[350px] md:w-[450px]  lg:w-[450px]  bg-[#FFFFFF] h-[480px] p-5  ">
     <div className="">     
 
       <div className="flex  relative  ">
      <h3 className="font-bold text-black text-2xl  ">Add New Board</h3>
-     <div>
-     <form method="dialog" className="absolute top-[22%] right-0">
-        <button className="">
-        <img className="h-[15px] w-[15px]  " src="/images/Group 18.png" alt="" />
-        </button>
-        </form>
-        </div>
         </div>
 
     <form 
@@ -167,12 +159,12 @@ const updateBoard = () => {
       </div>
     
     <button 
-     className="w-[295px] md:w-[416px] lg:w-[416px] h-[40px] bg-[#F4F7FD]
+     className="w-[295px] md:w-[416px] lg:w-[416px] font-semibold text-[#635FC7] h-[40px] bg-[#F4F7FD]
       rounded-full mb-5 ">+ Add New Column</button>
 
    <input className="w-[295px] md:w-[416px] lg:w-[416px]
-   h-[40px] bg-[#635FC7] text-white rounded-full "
-  type="submit" value="save Chenge" />
+   h-[40px] bg-[#635FC7]  hover:text-[#635FC7] text-white cursor-pointer hover:bg-white font-semibold rounded-full "
+  type="submit" value="Save Chenge" />
 
     </form>
     </div>

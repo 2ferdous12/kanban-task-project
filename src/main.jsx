@@ -25,7 +25,7 @@ const router = createBrowserRouter([
       {
         path: "/columnSection",
         element: <ColumnSection></ColumnSection>,
-        loader: () => fetch('http://localhost:9000/use')
+        loader: () => fetch('http://localhost:4000/use')
       },
       {
         path: "/",
@@ -39,22 +39,22 @@ const router = createBrowserRouter([
       {
         path: "/board",
         element: <Board></Board>,
-        loader: () => fetch('http://localhost:9000/users')
+        loader: () => fetch('http://localhost:4000/users')
       },
       {
         path: "/showTask/:id",
         element: <ShowTask></ShowTask>,
-        loader: ({params}) =>fetch(`http://localhost:9000/use/${params.id}`)
+        loader: ({params}) =>fetch(`http://localhost:4000/use/${params.id}`)
       },
       {
         path: "/updateTask/:id",
         element: <UpdateTask></UpdateTask>,
-        loader: ({params}) =>fetch(`http://localhost:9000/use/${params.id}`)
+        loader: ({params}) =>fetch(`http://localhost:4000/use/${params.id}`)
       },
       {
         path: "/updateBoard/:id",
         element: <UpdateBoard></UpdateBoard>,
-        loader: ({params}) =>fetch(`http://localhost:9000/users/${params.id}`)
+        loader: ({params}) =>fetch(`http://localhost:4000/users/${params.id}`)
       },
       {
         path: "/roadmap",

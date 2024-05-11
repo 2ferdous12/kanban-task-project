@@ -11,7 +11,7 @@ const updateTask = () => {
   const [taskdata333, setTaskdata333] = useState([]);
   const [taskStatus, setTaskStatus] = useState('todo');
   useEffect(() =>{
-    fetch('http://localhost:9000/users')
+    fetch('http://localhost:4000/users')
     .then(res => res.json())
     .then(data => setTaskdata333(data))
 })
@@ -49,7 +49,7 @@ const updateTask = () => {
     const status = form.status.value;
     const update = {title, textarea, substak1, substak2, status}
 
-   fetch(`http://localhost:9000/use/${load._id}`, {
+   fetch(`http://localhost:4000/use/${load._id}`, {
     method: "PUT",
     headers: {
       "content-Type": "application/json",
@@ -68,26 +68,19 @@ const updateTask = () => {
     return (
     <div className="bg-[#F4F7FD] w-full min-h-[calc(100vh-120px)] p-5">
    <Link to="/board">
-   <button className="btn">
-   <p className="text-xl font-semibold">Go Main Page</p>
+   <button className="btn  hover:bg-[#F4F7FD] rounded-full bg-[#635FC7] text-white">
+   <p className=" font-semibold">Go To Board</p>
    </button>
   </Link>
 
     <div className="absolute left-[3%] md:left-[41%] lg:left-[41%] 
-      top-[10%] md:top-[20%] lg:top-[20%]
+      top-[18%] md:top-[20%] lg:top-[20%]
     ">
     <div className=" w-[350px] md:w-[450px]  lg:w-[450px]  bg-[#FFFFFF] h-[675px] p-5  ">
     <div className="">   
 
    <div className="flex  relative  ">
    <h3 className="font-bold text-black text-2xl  ">Add New Task</h3>
-   <div>
-  <form method="dialog" className="absolute top-[22%] right-0">
-        <button className="">
-        <img className="h-[15px] w-[15px]  " src="/images/Group 18.png" alt="" />
-        </button>
-       </form>
-  </div>
   </div>
 
     <form 
